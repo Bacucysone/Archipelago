@@ -1,6 +1,6 @@
 # Archipelago personal fork
 This is a simple fork of Archipelago for my personal projects.
-Original repository is at Archipelago
+Original repository is at [Archipelago](https://github.com/ArchipelagoMW/Archipelago)
 
 ## List of games
 Currently, this repository adds
