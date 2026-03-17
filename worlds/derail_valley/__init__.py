@@ -28,11 +28,6 @@ class DVWeb(WebWorld):
     tutorials = [setup_en]
 
 
-class DVSettings(settings.Group):
-    class PatchFile(settings.UserFilePath):
-        """Path of the patch information for the mod"""
-
-
 class DVWorld(World):
     """Drive a collection of locomotives to earn money, licenses, and find the relic demonstrator locomotives"""
     game = "Derail Valley"
@@ -42,7 +37,6 @@ class DVWorld(World):
 
     options_dataclass = DVOptions  # options the player can set
     options: DVOptions  # typing hints for option results
-    settings: typing.ClassVar[DVOptions]  # will be automatically assigned from type hint
     topology_present = True  # show path to required location checks in spoiler
 
     # The following two dicts are required for the generation to know which
