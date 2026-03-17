@@ -1,4 +1,5 @@
 from rule_builder.rules import Has, HasAny, HasAll, HasFromList, HasAllCounts, True_, Or
+from BaseClasses import Location
 
 from .locations import get_locations
 
@@ -12,9 +13,8 @@ def can_operate(loco):
     if loco in ["S060", "S282"]:
         return can_operate_steam & Has(loco)
     return Has(loco)
-def set_location_rules(world: "DVWorld") -> None:
+def set_location_rules(world: "DVWorld", location_table: Location) -> None:
     player = world.player
-    location_tables = get_locations(world)
     transport_job = HasAny("Freight haul license", "Logistical haul license")
     job_license = Has("Shunting license") | transport_job
     all_stations_but_mb = HasAny("CME", "CMS", "CP", "CS", "CW", "FF", "FM", "FRC", "FRS", "GF", "HB", "IME", "IMW", "MF", "OR", "OWC", "OWN", "SM", "SW")
@@ -44,7 +44,7 @@ def set_location_rules(world: "DVWorld") -> None:
     # Win condition
     world.set_completion_rule(HasFromList(*("Finish "+station for station in world.all_stations), count=world.options.nb_stations.value))
     
-    for loc in location_tables:
+    for loc in location_table:
         if loc.address is not None and 0x400 <= loc.address and loc.address < 0x500:
             n = 2 if loc.name[2] in [' ', '/'] else 3
             station = loc.name[:n]

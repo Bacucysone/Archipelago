@@ -1,5 +1,5 @@
 from typing import NamedTuple, Optional, List
-from BaseClasses import Location, ItemClassification
+from BaseClasses import Location, ItemClassification, Region
 
 from .items import get_id, get_starting_items, DVItem
 
@@ -13,7 +13,7 @@ class DVLocation(Location):
 
 all_stations = ["CME", "CMS", "CP", "CS", "CW", "FF", "FM", "FRC", "FRS", "GF", "HB", "IME", "IMW", "MB", "MF", "OR", "OWC", "OWN", "SM", "SW"]
 
-def get_locations(world: "DVWorld") -> List[DVLocation]:
+def get_locations(world: "DVWorld", region: Region) -> List[DVLocation]:
     locos = ["DE2", "DM3", "DH4", "DE6", "S060", "S282"]
     all_locations_data = get_all_locations_data()
     ret = []
@@ -26,12 +26,12 @@ def get_locations(world: "DVWorld") -> List[DVLocation]:
     #         ret.extend([DVLocation(world.player, loc.name, loc.code, "Shop") for loc in all_locations_data if 0x50 <= loc.code and loc.code < 0x400])
     for k, station in enumerate(world.all_stations):
         for i in range(world.options.nb_shunts.value):
-            ret.append(DVLocation(world.player, f"{station} shunting n°{i+1}", 0x1000+0x100*k+i, "Shunting jobs"))
+            ret.append(DVLocation(world.player, f"{station} shunting n°{i+1}", 0x1000+0x100*k+i, region))
         for i in range(world.options.nb_freights.value):
-            ret.append(DVLocation(world.player, f"{station} transport job n°{i+1}", 0x2500+0x100*k+i, "Transport jobs"))
-    ret.extend([DVLocation(world.player, loc.name, loc.code, "Museum") for loc in all_locations_data if 0x400 <= loc.code and loc.code < 0x700])
+            ret.append(DVLocation(world.player, f"{station} transport job n°{i+1}", 0x2500+0x100*k+i, region))
+    ret.extend([DVLocation(world.player, loc.name, loc.code, region) for loc in all_locations_data if 0x400 <= loc.code and loc.code < 0x700])
     for station in all_stations:
-        end_station = DVLocation(world.player, "Finish "+station, None, "Victory")
+        end_station = DVLocation(world.player, "Finish "+station, None, region)
         end_station.place_locked_item(DVItem("Finish "+station, ItemClassification.progression, None, world.player))
         ret.append(end_station)
 

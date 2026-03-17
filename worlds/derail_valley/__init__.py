@@ -67,8 +67,8 @@ class DVWorld(World):
         
 
     def create_regions(self) -> None:
-        init_areas(self)
-        set_location_rules(self)
+        locations = init_areas(self)
+        set_location_rules(self, locations)
     
     def get_excluded_items(self)-> Set[Item]:
         excluded: Set[Item] = set()
