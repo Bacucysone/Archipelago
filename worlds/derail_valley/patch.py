@@ -378,28 +378,6 @@ def create_save(world, filename):
     ciphered_data = cryptObj.cipher(json_data, INIT)
     paky.add_chunk(1, ciphered_data)
     return paky
-station_positions = [
-    ({"x":15596.2, "y":204.3, "z":11134.0}, {"x":0.0, "y":0.7 , "z":0.0, "w":-0.7}),
-    ({"x":8475.5, "y": 156.4, "z":3476.2}, {"x":0.0, "y": 0.0, "z":0.0, "w":1.0}),
-    ({"x":2104.5, "y":145.1, "z":8991.6}, {"x":0.0, "y": 0.8, "z":0.0, "w":-0.5}),
-    ({"x":9948.7, "y": 134.7, "z":1344.6}, {"x":0.0, "y": 1.0, "z":0.0, "w":0.0}),
-    ({"x":2019.7, "y":122.2, "z":5678.8}, {"x":0.0, "y": 0.9, "z":0.0, "w":0.4}),
-    ({"x":9479.3, "y":119.3, "z":13615.4}, {"x":0.0, "y": 0.8, "z":0.0, "w":-0.6}),
-    ({"x":5998.2, "y":124.0, "z":6741.1}, {"x":0.0, "y": 0.5, "z":0.0, "w":-0.9}),
-    ({"x":5688.7, "y":144.9, "z":8698.4}, {"x":0.0, "y": 1.0, "z":0.0, "w":-0.2}),
-    ({"x":5357.5, "y": 174.7, "z":3710.2}, {"x":0.0, "y": 0.7, "z":0.0, "w":0.8}),
-    ({"x":12852.3, "y": 140.2, "z":11037.2}, {"x":0.0, "y": 0.2, "z":0.0, "w":-1.0}),
-    ({"x":13063.0, "y": 113.1, "z":3530.3}, {"x":0.0, "y": 1.0, "z":0.0, "w":-0.2}),
-    ({"x":14958.3, "y":248.2, "z":15248.7}, {"x":0.0, "y": 0.6, "z":0.0, "w":-0.8}),
-    ({"x":2025.2, "y":133.5, "z":13401.8}, {"x":0.0, "y": 0.5, "z":0.0, "w":-0.8}),
-    ({"x":12762.7, "y":215.1, "z":14759.1}, {"x":0.0, "y": 0.8, "z":0.0, "w":-0.6}),
-    ({"x":2354.0, "y":159.3, "z":10972.0}, {"x":0.0, "y": 0.7, "z":0.0, "w":-0.7}),
-    ({"x":6386.8, "y":143.9, "z":11308.6}, {"x":0.0, "y": 0.8, "z":0.0, "w":0.6}),
-    ({"x":4952.2, "y":123.1, "z":6275.0}, {"x":0.0, "y": 1.0, "z":0.0, "w":0.0}),
-    ({"x":11548.6, "y":122.3, "z":11528.7}, {"x":0.0, "y": 1.0, "z":0.0, "w":0.3}),
-    ({"x":512.6, "y": 131.9, "z":760.5}, {"x":0.0, "y": 0.9, "z":0.0, "w":0.4}),
-    ({"x":7919, "y": 131.9, "z":7345.5}, {"x":0.0, "y": 0.9, "z":0.0, "w":0.4})
-    ]
 
 def get_data(now, world):
     offset = now.tzinfo.utcoffset(None).seconds
@@ -431,8 +409,8 @@ def get_data(now, world):
                 "timestamp": timestamp+'Z'
             }]
         },
-        "Player_position": station_positions[world.starting_station][0], 
-        "Player_rotation": station_positions[world.starting_station][1],
+        "Player_position": {"x":512.6, "y": 131.9, "z":760.5}, 
+        "Player_rotation": {"x":0.0, "y": 0.9, "z":0.0, "w":0.4},
         "Player_car_guid": "",
         "Garages": [],
         "RandoData": {
@@ -453,7 +431,7 @@ def get_data(now, world):
             "VictoryThreshold": world.options.nb_jobs.value,
             "AlreadyWon": False,
             "Version": 1,
-            "IsFirstLoading": True,
+            "TeleportToStation": world.starting_station,
         },
         "Storage_Inventory": [
             {"itemPrefabName":"CommsRadio",

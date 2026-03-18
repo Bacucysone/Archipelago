@@ -91,10 +91,10 @@ class DVWorld(World):
         station_licenses = []
         for item in starting_items:
             if item in self.all_stations:
-                station_licenses.append(self.all_stations.index(item))
+                station_licenses.append(item)
             self.push_precollected(self.create_item(item))
         if len(station_licenses) == 0:
-            station_licenses.append(18)
+            station_licenses.append("SM")
         self.starting_station = self.random.choice(station_licenses)
         pool = self.get_common_items(starting_items)
         self.pad_items(pool)
