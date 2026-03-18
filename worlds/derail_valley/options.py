@@ -57,8 +57,7 @@ class NbShuntings(Range):
     default=7
 class NbLocos(Range):
     """One of the locations is to perform a given number
-    of jobs using each locomotive (6 checks).
-    Choose 0 to disable this completely"""
+    of jobs using each locomotive (6 checks)."""
     display_name="Number of jobs required for a check per loco"
     range_start=0
     range_end=20

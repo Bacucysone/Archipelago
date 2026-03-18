@@ -377,7 +377,6 @@ def create_save(world, filename):
     cryptObj = AES(get_pass())
     ciphered_data = cryptObj.cipher(json_data, INIT)
     paky.add_chunk(1, ciphered_data)
-    paky.add_chunk(25, [Byte(x) for x in json_data])
     return paky
 station_positions = [
     ({"x":15596.2, "y":204.3, "z":11134.0}, {"x":0.0, "y":0.7 , "z":0.0, "w":-0.7}),
@@ -635,17 +634,3 @@ def get_data(now, world):
     }
     return data_dict
 
-class DVPatch(APPlayerContainer):
-    game = "Derail Valley"
-    patch_file_ending = ".save"
-
-    def __init__(self, world: "DVWorld", filename: str="", output_directory: str="", player: Optional[int]=0, player_name: str="", server: str = ""):
-        self.filename = filename
-        self.paky = create_save(world, self.filename)
-        container_path=os.path.join(output_directory, self.filename)
-        super().__init__(container_path, player, player_name, server)
-    
-    def write_contents(self, opened_zipfile: zipfile.ZipFile):
-        opened_zipfile.writestr(self.paky.name, self.paky.write())
-        super().write_contents(opened_zipfile)
-        

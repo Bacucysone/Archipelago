@@ -9,7 +9,7 @@ from .rules import set_location_rules
 from .options import dv_option_groups, DVOptions
 from .regions import init_areas
 from .options import DVOptions, dv_option_groups
-from .patch import DVPatch, create_save
+from .patch import create_save
 
 class DVWeb(WebWorld):
     theme = "stone"
@@ -19,7 +19,7 @@ class DVWeb(WebWorld):
         "A guide to setting up the Derail Valley randomizer"
         "and connecting to an Archipelago server.",
         "English",
-        "setup_en.md",
+        "AP_setup.md",
         "setup/en",
         ["Bacucysone"]
     )
@@ -101,9 +101,7 @@ class DVWorld(World):
         self.multiworld.itempool += pool
     
     def generate_output(self, output_directory: str) -> None:
-        patch = DVPatch(self, self.multiworld.get_out_file_name_base(self.player)+".save", output_directory, self.player)
-        patch.write()
-        # paky = create_save(self, os.path.join(output_directory, self.multiworld.get_out_file_name_base(self.player)+".save"))
-        # paky.write_to_file()
+        paky = create_save(self, os.path.join(output_directory, self.multiworld.get_out_file_name_base(self.player)+".save"))
+        paky.write_to_file()
 
 

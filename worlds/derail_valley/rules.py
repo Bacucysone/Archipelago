@@ -62,7 +62,7 @@ def set_location_rules(world: "DVWorld", location_table: Location) -> None:
     for loco in world.all_locos:
         world.set_rule(world.multiworld.get_location(loco+" nb of jobs", player), can_make_money & can_operate(loco))
         world.set_rule(world.multiworld.get_location(loco+" relic parts to museum", player), can_make_money & HasAll("Museum license","Demo Loco "+loco))
-        world.set_rule(world.multiworld.get_location(loco+" relic painted", player), can_make_money & can_operate(loco) & HasAllCounts({"PaintSprayer":1, "Manual service license":1, "Museum license":1, "Demo Loco "+loco: 2}| ({} if True else {"PaintCan_Sand":2, "PaintCan_Museum":2})))
+        world.set_rule(world.multiworld.get_location(loco+" relic painted", player), can_make_money & HasAllCounts({loco:1, "PaintSprayer":1, "Manual service license":1, "Museum license":1, "Demo Loco "+loco: 2}| ({} if True else {"PaintCan_Sand":2, "PaintCan_Museum":2})))
     
     world.set_rule(world.multiworld.get_location("DE2 license", player), can_make_money)
     world.set_rule(world.multiworld.get_location("DM3 license", player), can_make_money)
