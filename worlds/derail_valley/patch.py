@@ -419,7 +419,7 @@ def get_data(now, world):
             "JobLocations": [False for _ in range(12)],
             "GeneralLocations": [False for _ in range(13)],
             "LocoLocations": [False for _ in range(57)],
-            "Index": [0],
+            "Index": 0,
             "ReceivedRelics": [0 for _ in range(6)],
             "Shunts": [0 for _ in range(20)],
             "ShuntThreshold": [world.options.nb_shunts.value for _ in range(20)],

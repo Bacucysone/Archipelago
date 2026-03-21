@@ -119,8 +119,8 @@ def get_all_locations_data() -> List[DVLocationData]:
 
     
     for i, station in enumerate(all_stations):
-        location_table.extend([DVLocationData(f"{station} shunting n°{k+1}", 0x1000+0x100*i+k, "Shunting jobs") for k in range(10)])
-        location_table.extend([DVLocationData(f"{station} transport job n°{k+1}", 0x2500+i*0x100+k, "Transport jobs") for k in range(10)])
+        location_table.extend([DVLocationData(f"{station} shunting n°{k+1}", 0x2000+0x100*i+k, "Shunting jobs") for k in range(10)])
+        location_table.extend([DVLocationData(f"{station} transport job n°{k+1}", 0x4000+i*0x100+k, "Transport jobs") for k in range(10)])
     
     all_locos = ["DE2", "DM3", "DH4", "DE6", "S060", "S282"]
     for i, loco in enumerate(all_locos):
