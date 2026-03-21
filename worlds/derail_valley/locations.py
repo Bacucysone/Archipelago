@@ -128,12 +128,12 @@ def get_all_locations_data() -> List[DVLocationData]:
         location_table.append(DVLocationData(loco+" relic parts to museum", 0x620+i, "Museum"))
         location_table.append(DVLocationData(loco+" relic painted", 0x630+i, "Museum"))
     location_table.extend([
-        DVLocationData("DE2 license", 0x660, "Start"),
-        DVLocationData("DM3 license", 0x661, "Start"),
-        DVLocationData("DH4 license", 0x662, "Intermediate license"),
-        DVLocationData("DE6 license", 0x663, "Advanced license"),
-        DVLocationData("S060 license", 0x664, "Start"),
-        DVLocationData("S282 license", 0x665, "Advanced license"),
+        DVLocationData("DE2 license", 0x660, "Start"),#G
+        DVLocationData("DM3 license", 0x661, "Start"),#G
+        DVLocationData("DH4 license", 0x662, "Intermediate license"),#G
+        DVLocationData("DE6 license", 0x663, "Advanced license"),#G
+        DVLocationData("S060 license", 0x664, "Start"),#G
+        DVLocationData("S282 license", 0x665, "Advanced license"),#G
     ])#G
 
     #Licenses

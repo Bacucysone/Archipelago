@@ -417,7 +417,7 @@ def get_data(now, world):
             "StationLicenses": [False for _ in range(20)],
             "HiddenGarages": [False for _ in range(4)],
             "JobLocations": [False for _ in range(12)],
-            "GeneralLocations": [False for _ in range(12)],
+            "GeneralLocations": [False for _ in range(13)],
             "LocoLocations": [False for _ in range(57)],
             "Index": [0],
             "ReceivedRelics": [0 for _ in range(6)],
@@ -432,6 +432,7 @@ def get_data(now, world):
             "AlreadyWon": False,
             "Version": 1,
             "TeleportToStation": world.starting_station,
+            "LocationsChecked": [],
         },
         "Storage_Inventory": [
             {"itemPrefabName":"CommsRadio",
