@@ -21,7 +21,7 @@ def set_location_rules(world: "DVWorld", location_table: Location) -> None:
     nb_shunts = world.options.nb_shunts.value
     nb_freights = world.options.nb_freights.value
     can_operate_one_loco = Or(*[can_operate(loco) for loco in world.all_locos])
-    can_make_money = job_license & can_operate_one_loco & (all_stations_but_mb  | HasAll("MB", "Progressive military license"))
+    can_make_money = job_license & can_operate_one_loco 
 
     # if world.options.shop > 0:
     #     for i in range(19):
