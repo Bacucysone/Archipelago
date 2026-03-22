@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from Options import (Toggle, PerGameCommonOptions, OptionGroup, Choice, Range)
+from Options import (Toggle, PerGameCommonOptions, OptionGroup, Choice, Range, DeathLink)
 
 class Dispatcher(Choice):
     """Choose what to do with dispatcher license:
@@ -108,6 +108,14 @@ class StartJobLicenses(Choice):
     option_no_restriction = 4
     default=3
 
+class HintsForLocoLicenses(Toggle):
+    """Add the item locked behind number of jobs with a loco on the corresponding license"""
+    display_name="Hints on loco licenses"
+
+class HintsForStationLicenses(Toggle):
+    """Add the items locked behing doing jobs in a given station on the corresponding license"""
+    display_name="Hints on station licenses"
+
 # class ShopHint(Choice):
 #     """Choose what is displayed as description of AP shop item
 #     (no effect is shop is not randomized)
@@ -135,6 +143,9 @@ class DVOptions(PerGameCommonOptions):
     #shop: RandoShops
     start_job: StartJobLicenses
     #shop_hint: ShopHint
+    hints_loco: HintsForLocoLicenses
+    hints_station: HintsForStationLicenses
+    death_link: DeathLink
 
 dv_option_groups = [
     OptionGroup("End goal", [
@@ -154,10 +165,13 @@ dv_option_groups = [
         NbFreights,
         NbShuntings,
         NbLocos,
+        DeathLink,
         #RandoShops
     ]),
-    # OptionGroup("Hint policy", [
-    #     ShopHint
-    # ])
+    OptionGroup("Hint policy", [
+        #ShopHint
+        HintsForLocoLicenses,
+        HintsForStationLicenses,
+    ])
     
 ]
