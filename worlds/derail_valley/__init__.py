@@ -96,6 +96,8 @@ class DVWorld(World):
             station_licenses.append("SM")
         self.starting_station = self.random.choice(station_licenses)
         pool = self.get_common_items(starting_items)
+        nb_unfilled_locations = len(self.multiworld.get_unfilled_locations(self.player)) - len(pool)
+        pool.extend([self.create_item("Double job token") for _ in range(int(nb_unfilled_locations * self.options.double_tokens.value / 100.0))])
         self.pad_items(pool)
         self.multiworld.itempool += pool
     

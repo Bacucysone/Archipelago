@@ -13,6 +13,7 @@ class DVItem(Item):
 _item_table: List[ItemData] = [
     ItemData("Nothing", ItemClassification.trap, -1, 0),
     ItemData("Money", ItemClassification.filler, 0x1, 0),
+    ItemData("Double job token", ItemClassification.useful, 0x2, 0),
 
     ItemData("AmpLimiter", ItemClassification.filler, 0x100, 0),
     ItemData("AntiWheelslipComputer", ItemClassification.filler, 0x101, 0),

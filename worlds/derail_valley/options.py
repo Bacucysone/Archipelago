@@ -49,6 +49,14 @@ class StartLocoLicenses(Choice):
     option_full_random = 7
     default = 6
 
+class PropDoubleJob(Range):
+    """How many free locations will be double jobs tokens (When you get one, next job you finish will count for two)
+    0 = No double job tokens/100 = After putting all necessary items (licenses, demo locos, paintsprayer, etc...) all remaining items will be double job tokens"""
+    display_name="Proportion of double job tokens"
+    range_start=0
+    range_end=100
+    default=10
+
 class NbShuntings(Range):
     """How many shuntings give unique items"""
     display_name="Number of shunting jobs locations"
@@ -146,6 +154,7 @@ class DVOptions(PerGameCommonOptions):
     hints_loco: HintsForLocoLicenses
     hints_station: HintsForStationLicenses
     death_link: DeathLink
+    double_tokens: PropDoubleJob
 
 dv_option_groups = [
     OptionGroup("End goal", [
@@ -154,11 +163,12 @@ dv_option_groups = [
     ]), 
     OptionGroup("Licenses", [
         Dispatcher,
-        StartLocoLicenses,
+        
         StationLicenses,
         StartJobLicenses
     ]),
     OptionGroup("Game preferences", [
+        StartLocoLicenses,
         StartingMoney
     ]),
     OptionGroup("Randomizer preferences", [
@@ -166,6 +176,7 @@ dv_option_groups = [
         NbShuntings,
         NbLocos,
         DeathLink,
+        PropDoubleJob,
         #RandoShops
     ]),
     OptionGroup("Hint policy", [
