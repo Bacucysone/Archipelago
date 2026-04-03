@@ -116,6 +116,17 @@ class BizHawkClientCommandProcessor(ClientCommandProcessor):
 
         logger.info(f"Currently Showing Categories: {', '.join(self.ctx.text_passthrough_categories)}")
 
+    def _cmd_connect(self, address: str = "") -> bool:
+        """Connect to a MultiWorld Server"""
+        if address:
+            self.ctx.server_address = None
+            self.ctx.password = None
+        elif not self.ctx.server_address:
+            self.output("Please specify an address.")
+            return False
+        async_start(self.ctx.connect(address if address else None), name="connecting")
+        return True
+
 
 class BizHawkClientContext(CommonContext):
     command_processor = BizHawkClientCommandProcessor
@@ -127,6 +138,7 @@ class BizHawkClientContext(CommonContext):
     slot_data: dict[str, Any] | None = None
     rom_hash: str | None = None
     bizhawk_ctx: BizHawkContext
+    
 
     watcher_timeout: float
     """The maximum amount of time the game watcher loop will wait for an update from the server before executing"""
@@ -139,6 +151,7 @@ class BizHawkClientContext(CommonContext):
         self.client_handler = None
         self.bizhawk_ctx = BizHawkContext()
         self.watcher_timeout = 0.5
+        self.auth = "Nase of Light"
 
     def _categorize_text(self, args: dict) -> TextCategory:
         if "type" not in args or args["type"] in {"Hint", "Join", "Part", "TagsChanged", "Goal", "Release", "Collect",

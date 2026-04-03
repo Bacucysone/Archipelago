@@ -9,7 +9,6 @@ from .rules import set_location_rules
 from .options import dv_option_groups, DVOptions
 from .regions import init_areas
 from .options import DVOptions, dv_option_groups
-from .patch import create_save
 
 class DVWeb(WebWorld):
     theme = "stone"
@@ -100,8 +99,20 @@ class DVWorld(World):
         self.pad_items(pool)
         self.multiworld.itempool += pool
     
-    def generate_output(self, output_directory: str) -> None:
-        paky = create_save(self, os.path.join(output_directory, self.multiworld.get_out_file_name_base(self.player)+".save"))
-        paky.write_to_file()
+    def fill_slot_data(self):
+        return {
+            "Money": self.options.money.value,
+            "Config": {
+                "ShuntThreshold":[self.options.nb_shunts.value for _ in range(20)],
+                "FreightThreshold": [self.options.nb_freights.value for _ in range(20)],
+                "LocoJobsThreshold": [self.options.nb_locos.value for _ in range(6)],
+                "Victory": self.options.nb_stations.value,
+                "VictoryThreshold": self.options.nb_jobs.value,
+                "HintsOnLocoLicense": self.options.hints_loco.value == 1,
+                "HintsOnStationLicense": self.options.hints_station.value == 1,
+                "DeathLink": self.options.death_link.value == 1,
+            },
+            "StartStation": self.starting_station
+        }
 
 
