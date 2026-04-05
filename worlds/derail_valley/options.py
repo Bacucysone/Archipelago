@@ -124,6 +124,12 @@ class HintsForStationLicenses(Toggle):
     """Add the items locked behing doing jobs in a given station on the corresponding license"""
     display_name="Hints on station licenses"
 
+class HintsForFirstLicenses(Toggle):
+    """Gives you hints about the first in-logic job license, loco license and station license if you have respectively chosen the "Fully randomized" option.
+    For example, if you chose to start with the DE2 license, fully randomized station licenses and one random job license, you will have the hint of the earliest
+    in-logic station license you can have."""
+    display_name="Hints for fully randomized progression items"
+
 # class ShopHint(Choice):
 #     """Choose what is displayed as description of AP shop item
 #     (no effect is shop is not randomized)
@@ -155,6 +161,7 @@ class DVOptions(PerGameCommonOptions):
     hints_station: HintsForStationLicenses
     death_link: DeathLink
     double_tokens: PropDoubleJob
+    hints_first: HintsForFirstLicenses
 
 dv_option_groups = [
     OptionGroup("End goal", [
@@ -183,6 +190,7 @@ dv_option_groups = [
         #ShopHint
         HintsForLocoLicenses,
         HintsForStationLicenses,
+        HintsForFirstLicenses,
     ])
     
 ]
