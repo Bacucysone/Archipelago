@@ -194,6 +194,7 @@ _speedups.html
 /Undertale/
 
 # OS General Files
+.run/
 .DS_Store
 .AppleDouble
 .LSOverride
