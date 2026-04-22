@@ -17,7 +17,7 @@ class StartingMoney(Range):
     """How much money you start with"""
     display_name="Starting money"
     range_start=0
-    range_end=1000000
+    range_end=10000
     default=2000
 
 class StationLicenses(Choice):
@@ -61,7 +61,7 @@ class NbShuntings(Range):
     """How many shuntings give unique items"""
     display_name="Number of shunting jobs locations"
     range_start=1
-    range_end=10
+    range_end=256
     default=7
 class NbLocos(Range):
     """One of the locations is to perform a given number
@@ -75,7 +75,7 @@ class NbFreights(Range):
     """How many transport jobs give unique items"""
     display_name="Number of transport jobs locations"
     range_start=1
-    range_end=10
+    range_end=256
     default=3
 
 # class RandoShops(Choice):
@@ -92,7 +92,7 @@ class NbJobs(Range):
     transport jobs from M stations. Here you choose N."""
     display_name="Number of jobs required to finish a station"
     range_start=1
-    range_end=40
+    range_end=1000
     default=7
 
 class NbStations(Range):
@@ -123,6 +123,12 @@ class HintsForLocoLicenses(Toggle):
 class HintsForStationLicenses(Toggle):
     """Add the items locked behing doing jobs in a given station on the corresponding license"""
     display_name="Hints on station licenses"
+
+class HintsForFirstLicenses(Toggle):
+    """Gives you hints about the first in-logic job license, loco license and station license if you have respectively chosen the "Fully randomized" option.
+    For example, if you chose to start with the DE2 license, fully randomized station licenses and one random job license, you will have the hint of the earliest
+    in-logic station license you can have."""
+    display_name="Hints for fully randomized progression items"
 
 # class ShopHint(Choice):
 #     """Choose what is displayed as description of AP shop item
@@ -155,6 +161,7 @@ class DVOptions(PerGameCommonOptions):
     hints_station: HintsForStationLicenses
     death_link: DeathLink
     double_tokens: PropDoubleJob
+    hints_first: HintsForFirstLicenses
 
 dv_option_groups = [
     OptionGroup("End goal", [
@@ -183,6 +190,7 @@ dv_option_groups = [
         #ShopHint
         HintsForLocoLicenses,
         HintsForStationLicenses,
+        HintsForFirstLicenses,
     ])
     
 ]

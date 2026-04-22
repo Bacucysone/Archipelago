@@ -116,5 +116,28 @@ class DVWorld(World):
             },
             "StartStation": self.starting_station
         }
-
-
+    def get_job_hint(self):
+        return None if self.options.hints_first == 1 and self.options.start_job.value == 4 else ""
+    def get_loco_hint(self):
+        return None if self.options.hints_first == 1 and self.options.start_loco.value == 7 else ""
+    def get_station_hint(self):
+        return None if self.options.hints_first == 1 and self.options.station_licenses.value == 0 else ""
+    def pre_output(self):
+        all_jobs = {"Freight haul license", "Logistical haul license", "Shunting license"}
+        all_locos = set(self.all_locos)
+        all_stations = set(self.all_stations)
+        first_found = [self.get_job_hint(), self.get_loco_hint(), self.get_station_hint()]
+        for locations in self.multiworld.get_spheres():
+            items = {location.item.name for location in locations if location.item.player == self.player}
+            maybe_job = items & all_jobs
+            if first_found[0] is None and len(maybe_job) > 0:
+                first_found[0] = maybe_job.pop()
+            maybe_loco = items & all_locos
+            if first_found[1] is None and len(maybe_loco) > 0:
+                first_found[1] = maybe_loco.pop()
+            maybe_station = items & all_stations
+            if first_found[2] is None and len(maybe_station) > 0:
+                first_found[2] = maybe_station.pop()
+            if first_found[0] is not None and first_found[1] is not None and first_found[2] is not None:
+                break
+        self.options.start_hints.value |= {x for x in first_found if len(x) > 0}
