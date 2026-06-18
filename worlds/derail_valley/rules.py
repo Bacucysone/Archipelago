@@ -3,11 +3,11 @@ from BaseClasses import Location
 
 from .locations import get_locations
 
-can_operate_steam = HasAll("Oiler", "lighter") & HasAny("shovel", "GoldenShovel", "ExpertShovel")
+can_operate_steam = HasAll("Oiler", "Lighter") & HasAny("Shovel", "Golden Shovel", "Expert Shovel")
 
 def military(station):
     if station == "MB":
-        return Has("Progressive military license")
+        return Has("Progressive Military license")
     return True_()
 def can_operate(loco):
     if loco in ["S060", "S282"]:
@@ -41,59 +41,61 @@ def set_location_rules(world: "DVWorld", location_table: Location) -> None:
     # if world.options.shop > 1:
     #     for i in range(10):
     #         set_rule(world.multiworld.get_location(f"Common shop item {i+1}", player), lambda state: can_make_money(state) and state.has_any(["GF","MF", "HB", "FF", "CW"], player))
+    
     # Win condition
     world.set_completion_rule(HasFromList(*("Finish "+station for station in world.all_stations), count=world.options.nb_stations.value))
     
+    # Rules for demonstrator locations
     for loc in location_table:
         if loc.address is not None and 0x400 <= loc.address and loc.address < 0x500:
             n = 2 if loc.name[2] in [' ', '/'] else 3
             station = loc.name[:n]
             world.set_rule(world.multiworld.get_location(loc.name, player), HasAll(station, "Museum license"))
 
-    
+    # Orders belong to their stations
     for station in world.all_stations:
         for k in range(nb_shunts):
-            world.set_rule(world.multiworld.get_location(station+f" shunting n°{k+1}", player), can_operate_one_loco & HasAll(station, "Shunting license") & military(station))
+            world.set_rule(world.multiworld.get_location(station+f" shunting order {k+1}", player), can_operate_one_loco & HasAll(station, "Shunting license") & military(station))
         for k in range(nb_freights):
-            world.set_rule(world.multiworld.get_location(station+f" transport job n°{k+1}", player), can_operate_one_loco & Has(station) & transport_job & military(station))
+            world.set_rule(world.multiworld.get_location(station+f" transport order {k+1}", player), can_operate_one_loco & Has(station) & transport_job & military(station))
         
         world.set_rule(world.multiworld.get_location("Finish "+station, player), can_make_money & Has(station) & military(station))
     
     for loco in world.all_locos:
-        world.set_rule(world.multiworld.get_location(loco+" nb of jobs", player), can_make_money & can_operate(loco))
-        world.set_rule(world.multiworld.get_location(loco+" relic parts to museum", player), can_make_money & HasAll("Museum license","Demo Loco "+loco))
-        world.set_rule(world.multiworld.get_location(loco+" relic painted", player), can_make_money & HasAllCounts({loco:1, "PaintSprayer":1, "Manual service license":1, "Museum license":1, "Demo Loco "+loco: 2}| ({} if True else {"PaintCan_Sand":2, "PaintCan_Museum":2})))
+        world.set_rule(world.multiworld.get_location(loco+" orders completed", player), can_make_money & can_operate(loco))
+        world.set_rule(world.multiworld.get_location(loco+" relic parts to museum", player), can_make_money & HasAll("Museum license","Demo locomotive "+loco))
+        world.set_rule(world.multiworld.get_location(loco+" relic painted", player), can_make_money & HasAllCounts({loco:1, "Paint Sprayer":1, "Manual service license":1, "Museum license":1, "Demo locomotive "+loco: 2}| ({} if True else {"Sand can":2, "Demonstrator Paint Can":2})))
     
     world.set_rule(world.multiworld.get_location("DE2 license", player), can_make_money)
     world.set_rule(world.multiworld.get_location("DM3 license", player), can_make_money)
-    world.set_rule(world.multiworld.get_location("DH4 license", player), can_make_money & Has("Progressive long license", 2))
-    world.set_rule(world.multiworld.get_location("DE6 license", player), can_make_money & Has("Progressive concurrent license", 2))
+    world.set_rule(world.multiworld.get_location("DH4 license", player), can_make_money & Has("Progressive Train Length license", 2))
+    world.set_rule(world.multiworld.get_location("DE6 license", player), can_make_money & Has("Progressive Concurrent orders license", 2))
     world.set_rule(world.multiworld.get_location("S060 license", player), can_make_money)
-    world.set_rule(world.multiworld.get_location("S282 license", player), can_make_money & Has("Progressive concurrent license", 2))
+    world.set_rule(world.multiworld.get_location("S282 license", player), can_make_money & Has("Progressive Concurrent orders license", 2))
     world.set_rule(world.multiworld.get_location("Dispatcher license", player), can_make_money)
-    world.set_rule(world.multiworld.get_location("Manual service license", player), can_make_money & Has("Progressive long license"))
-    world.set_rule(world.multiworld.get_location("Multiple unit license", player), can_make_money & Has("Progressive concurrent license"))
+    world.set_rule(world.multiworld.get_location("Manual service license", player), can_make_money & Has("Progressive Train Length license"))
+    world.set_rule(world.multiworld.get_location("Multiple unit license", player), can_make_money & Has("Progressive Concurrent orders license"))
     world.set_rule(world.multiworld.get_location("Concurrent 1 license", player), can_make_money)
-    world.set_rule(world.multiworld.get_location("Concurrent 2 license", player), can_make_money & Has("Progressive concurrent license"))
+    world.set_rule(world.multiworld.get_location("Concurrent 2 license", player), can_make_money & Has("Progressive Concurrent orders license"))
     world.set_rule(world.multiworld.get_location("Museum license", player), can_make_money & Has("Manual service license"))
     world.set_rule(world.multiworld.get_location("Train driver license", player), can_make_money)
 
     world.set_rule(world.multiworld.get_location("Shunting license", player), can_make_money)
-    world.set_rule(world.multiworld.get_location("Logistical haul license", player), can_make_money & Has("Progressive concurrent license"))
+    world.set_rule(world.multiworld.get_location("Logistical haul license", player), can_make_money & Has("Progressive Concurrent orders license"))
     world.set_rule(world.multiworld.get_location("Fragile license", player), can_make_money)
     world.set_rule(world.multiworld.get_location("Long 1 license", player), can_make_money)
-    world.set_rule(world.multiworld.get_location("Long 2 license", player), can_make_money & Has("Progressive long license"))
+    world.set_rule(world.multiworld.get_location("Long 2 license", player), can_make_money & Has("Progressive Train Length license"))
     world.set_rule(world.multiworld.get_location("Hazmat 1 license", player), can_make_money & Has("Fragile license"))
-    world.set_rule(world.multiworld.get_location("Hazmat 2 license", player), can_make_money & Has("Progressive hazmat license"))
-    world.set_rule(world.multiworld.get_location("Hazmat 3 license", player), can_make_money & Has("Progressive hazmat license", 2))
+    world.set_rule(world.multiworld.get_location("Hazmat 2 license", player), can_make_money & Has("Progressive Hazmat license"))
+    world.set_rule(world.multiworld.get_location("Hazmat 3 license", player), can_make_money & Has("Progressive Hazmat license", 2))
     world.set_rule(world.multiworld.get_location("Military 1 license", player), can_make_money)
-    world.set_rule(world.multiworld.get_location("Military 2 license", player), can_make_money & Has("Progressive military license"))
-    world.set_rule(world.multiworld.get_location("Military 3 license", player), can_make_money & Has("Progressive military license", 2))
+    world.set_rule(world.multiworld.get_location("Military 2 license", player), can_make_money & Has("Progressive Military license"))
+    world.set_rule(world.multiworld.get_location("Military 3 license", player), can_make_money & Has("Progressive Military license", 2))
     world.set_rule(world.multiworld.get_location("Freight haul license", player), can_make_money)
 
-    world.set_rule(world.multiworld.get_location("Opening Steves garage", player), Has("KeyDE6Slug"))
-    world.set_rule(world.multiworld.get_location("Opening Reginald garage", player), Has("KeyCaboose"))
-    world.set_rule(world.multiworld.get_location("Opening Old Bob garage", player), Has("Key"))
-    world.set_rule(world.multiworld.get_location("Opening Olaf garage", player), Has("KeyDM1U"))
+    world.set_rule(world.multiworld.get_location("Opening Steves garage", player), Has("Steve's Garage Key (DE6 Slug)"))
+    world.set_rule(world.multiworld.get_location("Opening Reginald garage", player), Has("Reginald's Garage Key (Caboose)"))
+    world.set_rule(world.multiworld.get_location("Opening Old Bob garage", player), Has("Old Bob's Garage Key (BE2)"))
+    world.set_rule(world.multiworld.get_location("Opening Olaf garage", player), Has("Olaf's Garage Key (DM1U)"))
 
 
