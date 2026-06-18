@@ -11,7 +11,7 @@ class DVItem(Item):
     game="Derail Valley"
 
 _item_table: List[ItemData] = [
-    ItemData("Nothing", ItemClassification.trap, -1, 0),
+    ItemData("Nothing", ItemClassification.trap, 0x0, 0),
     ItemData("Money", ItemClassification.filler, 0x1, 0),
     ItemData("Double job token", ItemClassification.useful, 0x2, 0),
 
