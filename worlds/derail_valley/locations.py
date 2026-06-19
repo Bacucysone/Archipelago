@@ -26,9 +26,9 @@ def get_locations(world: "DVWorld", region: Region) -> List[DVLocation]:
     #         ret.extend([DVLocation(world.player, loc.name, loc.code, "Shop") for loc in all_locations_data if 0x50 <= loc.code and loc.code < 0x400])
     for k, station in enumerate(world.all_stations):
         for i in range(world.options.nb_shunts.value):
-            ret.append(DVLocation(world.player, f"{station} shunting n°{i+1}", 0x2000+0x100*k+i, region))
+            ret.append(DVLocation(world.player, f"{station} shunting order {i+1}", 0x2000+0x100*k+i, region))
         for i in range(world.options.nb_freights.value):
-            ret.append(DVLocation(world.player, f"{station} transport job n°{i+1}", 0x4000+0x100*k+i, region))
+            ret.append(DVLocation(world.player, f"{station} transport order {i+1}", 0x4000+0x100*k+i, region))
     ret.extend([DVLocation(world.player, loc.name, loc.code, region) for loc in all_locations_data if 0x400 <= loc.code and loc.code < 0x700])
     for station in all_stations:
         end_station = DVLocation(world.player, "Finish "+station, None, region)
@@ -119,12 +119,12 @@ def get_all_locations_data() -> List[DVLocationData]:
 
     
     for i, station in enumerate(all_stations):
-        location_table.extend([DVLocationData(f"{station} shunting n°{k+1}", 0x2000+0x100*i+k, "Shunting jobs") for k in range(10)])
-        location_table.extend([DVLocationData(f"{station} transport job n°{k+1}", 0x4000+i*0x100+k, "Transport jobs") for k in range(10)])
+        location_table.extend([DVLocationData(f"{station} shunting order {k+1}", 0x2000+0x100*i+k, "Shunting jobs") for k in range(10)])
+        location_table.extend([DVLocationData(f"{station} transport order {k+1}", 0x4000+i*0x100+k, "Transport jobs") for k in range(10)])
     
     all_locos = ["DE2", "DM3", "DH4", "DE6", "S060", "S282"]
     for i, loco in enumerate(all_locos):
-        location_table.append(DVLocationData(loco+" nb of jobs", 0x600+i, "Loco jobs"))
+        location_table.append(DVLocationData(loco+" orders completed", 0x600+i, "Loco jobs"))
         location_table.append(DVLocationData(loco+" relic parts to museum", 0x620+i, "Museum"))
         location_table.append(DVLocationData(loco+" relic painted", 0x630+i, "Museum"))
     location_table.extend([

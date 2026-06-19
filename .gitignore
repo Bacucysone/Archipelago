@@ -68,6 +68,8 @@ Output Logs/
 /custom_worlds
 # stubgen output
 /out/
+fuzz.py
+fuzz_output/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
