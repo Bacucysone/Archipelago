@@ -88,18 +88,18 @@ class DVWorld(World):
 
     def create_items(self):
         excluded_items = get_starting_items(self)
-        station_licenses = []
+        possible_stations = []
         for item in excluded_items:
             if item in self.all_stations_unlock:
-                station_licenses.append(item)
+                possible_stations.append(item.split(" ")[0])
             self.push_precollected(self.create_item(item))
         if self.options.dispatcher.value == 1:
             excluded_items.append("Dispatcher license")
             dispatcher_license = self.create_item("Dispatcher license")
             self.multiworld.get_location("Dispatcher license", self.player).place_locked_item(dispatcher_license)
-        if len(station_licenses) == 0:
-            station_licenses.append("SM Station unlock") # This spawns you at SM if you don't have a license
-        self.starting_station = self.random.choice(station_licenses)
+        if len(possible_stations) == 0:
+            possible_stations.append("SM") # This spawns you at SM if you don't have a license
+        self.starting_station = self.random.choice(possible_stations)
         pool = self.get_common_items(excluded_items)
         nb_unfilled_locations = len(self.multiworld.get_unfilled_locations(self.player)) - len(pool)
         pool.extend([self.create_item("Double job token") for _ in range(int(nb_unfilled_locations * self.options.double_tokens.value / 100.0))])
