@@ -32,7 +32,7 @@ class DVWorld(World):
     game = "Derail Valley"
     option_definitions = DVOptions
     data_version=1
-    required_client_version=(0,6,0)
+    required_client_version=(0,6,7)
 
     options_dataclass = DVOptions  # options the player can set
     options: DVOptions  # typing hints for option results
