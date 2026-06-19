@@ -11,7 +11,7 @@ class DVItem(Item):
     game="Derail Valley"
 
 _item_table: List[ItemData] = [
-    ItemData("Nothing", ItemClassification.trap, 0x0, 0),
+    ItemData("Nothing", ItemClassification.trap, 0x3, 0),
     ItemData("Money", ItemClassification.filler, 0x1, 0),
     ItemData("Double job token", ItemClassification.useful, 0x2, 0),
 
@@ -102,7 +102,7 @@ _item_table: List[ItemData] = [
     ItemData("Red Light Bar", ItemClassification.filler, 0x1AA, 0),
     ItemData("White Light Bar", ItemClassification.filler, 0x1AB, 0),
     ItemData("Yellow Light Bar", ItemClassification.filler, 0x1AC, 0),
-    ItemData("Lighter", ItemClassification.progression, 0x1AD, 1),
+    ItemData("Lighter", ItemClassification.progression, 0x1AE, 1),
     ItemData("High-tech Headlight Left", ItemClassification.filler, 0x1B2, 0),
     ItemData("High-tech Headlight Right", ItemClassification.filler, 0x1B3, 0),
     ItemData("High-tech Taillight Left", ItemClassification.filler, 0x1B4, 0),
@@ -245,10 +245,10 @@ def get_starting_items(world: "DVWorld"):
         L.extend(["Shovel", "Oiler", "Lighter"])
     match world.options.station_licenses:
         case 1:
-            all_stations_but_mb = [f"{x} Station unlock" for x in world.all_stations if x != "MB"]
+            all_stations_but_mb = [x for x in world.all_stations_unlock if x != "MB Station unlock"]
             L.append(world.random.choice(all_stations_but_mb))
         case 2:
-            L.append(f"{x} Station unlock" for x in world.all_stations)
+            L.extend([x for x in world.all_stations_unlock])
     match world.options.start_job:
         case 0:
             L.append("Freight haul license")
