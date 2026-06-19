@@ -245,7 +245,7 @@ def get_starting_items(world: "DVWorld"):
         L.extend(["Shovel", "Oiler", "Lighter"])
     match world.options.station_licenses:
         case 1:
-            all_stations_but_mb = [f"{x} Station unlock" for x in world.all_stations if x != "Military Base"]
+            all_stations_but_mb = [f"{x} Station unlock" for x in world.all_stations if x != "MB"]
             L.append(world.random.choice(all_stations_but_mb))
         case 2:
             L.append(f"{x} Station unlock" for x in world.all_stations)

@@ -46,7 +46,9 @@ class DVWorld(World):
     all_locations = get_all_locations_data()
 
     all_stations = ["CME", "CMS", "CP", "CS", "CW", "FF", "FM", "FRC", "FRS", "GF", "HB", "IME", "IMW", "MB", "MF", "OR", "OWC", "OWN", "SM", "SW"]
+    all_stations_unlock = [f"{x} Station unlock" for x in all_stations]
     all_locos = ["DE2", "DM3", "DH4", "DE6", "S060", "S282"]
+    all_locos_license = [f"{x} locomotive license" for x in all_locos]
     item_name_to_id = {data.name: data.code for
                        data in all_items}
     location_name_to_id = {loc_type.name: loc_type.code for
@@ -89,11 +91,11 @@ class DVWorld(World):
         starting_items = get_starting_items(self)
         station_licenses = []
         for item in starting_items:
-            if item in self.all_stations:
+            if item in self.all_stations_unlock:
                 station_licenses.append(item)
             self.push_precollected(self.create_item(item))
         if len(station_licenses) == 0:
-            station_licenses.append("SM")
+            station_licenses.append("SM Station unlock") # This spawns you at SM if you don't have a license
         self.starting_station = self.random.choice(station_licenses)
         pool = self.get_common_items(starting_items)
         nb_unfilled_locations = len(self.multiworld.get_unfilled_locations(self.player)) - len(pool)
@@ -124,8 +126,8 @@ class DVWorld(World):
         return None if self.options.hints_first == 1 and self.options.station_licenses.value == 0 else ""
     def pre_output(self):
         all_jobs = {"Freight haul license", "Logistical haul license", "Shunting license"}
-        all_locos = set(self.all_locos)
-        all_stations = set(self.all_stations)
+        all_locos = set(self.all_locos_license)
+        all_stations = set(self.all_stations_unlock)
         first_found = [self.get_job_hint(), self.get_loco_hint(), self.get_station_hint()]
         for locations in self.multiworld.get_spheres():
             items = {location.item.name for location in locations if location.item.player == self.player}
@@ -140,4 +142,4 @@ class DVWorld(World):
                 first_found[2] = maybe_station.pop()
             if first_found[0] is not None and first_found[1] is not None and first_found[2] is not None:
                 break
-        self.options.start_hints.value |= {x for x in first_found if len(x) > 0}
+        self.options.start_hints.value |= {x for x in first_found if x is not None and len(x) > 0}
