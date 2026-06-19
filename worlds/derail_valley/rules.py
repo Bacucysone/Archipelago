@@ -10,17 +10,17 @@ def military(station):
         return Has("Progressive Military license")
     return True_()
 def can_operate(loco):
-    if loco in ["S060", "S282"]:
+    if loco in ["S060 locomotive license", "S282 locomotive license"]:
         return can_operate_steam & Has(loco)
     return Has(loco)
 def set_location_rules(world: "DVWorld", location_table: Location) -> None:
     player = world.player
     transport_job = HasAny("Freight haul license", "Logistical haul license")
     job_license = Has("Shunting license") | transport_job
-    all_stations_but_mb = HasAny("CME", "CMS", "CP", "CS", "CW", "FF", "FM", "FRC", "FRS", "GF", "HB", "IME", "IMW", "MF", "OR", "OWC", "OWN", "SM", "SW")
+    all_stations_but_mb = HasAny("CME", "CMS", "CP", "CS", "CW", "FF", "FM", "FRC", "FRS", "GF", "HB", "IME", "IMW", "MF", "OR", "OWC", "OWN", "SM", "SW") # not used
     nb_shunts = world.options.nb_shunts.value
     nb_freights = world.options.nb_freights.value
-    can_operate_one_loco = Or(*[can_operate(loco) for loco in world.all_locos])
+    can_operate_one_loco = Or(*[can_operate(f"{loco} locomotive license") for loco in world.all_locos])
     can_make_money = job_license & can_operate_one_loco 
 
     # if world.options.shop > 0:
@@ -50,21 +50,21 @@ def set_location_rules(world: "DVWorld", location_table: Location) -> None:
         if loc.address is not None and 0x400 <= loc.address and loc.address < 0x500:
             n = 2 if loc.name[2] in [' ', '/'] else 3
             station = loc.name[:n]
-            world.set_rule(world.multiworld.get_location(loc.name, player), HasAll(station, "Museum license"))
+            world.set_rule(world.multiworld.get_location(loc.name, player), HasAll(station+f" Station unlock", "Museum license"))
 
     # Orders belong to their stations
     for station in world.all_stations:
         for k in range(nb_shunts):
-            world.set_rule(world.multiworld.get_location(station+f" shunting order {k+1}", player), can_operate_one_loco & HasAll(station, "Shunting license") & military(station))
+            world.set_rule(world.multiworld.get_location(station+f" shunting order {k+1}", player), can_operate_one_loco & HasAll(station+f" Station unlock", "Shunting license") & military(station))
         for k in range(nb_freights):
-            world.set_rule(world.multiworld.get_location(station+f" transport order {k+1}", player), can_operate_one_loco & Has(station) & transport_job & military(station))
+            world.set_rule(world.multiworld.get_location(station+f" transport order {k+1}", player), can_operate_one_loco & Has(station+f" Station unlock") & transport_job & military(station))
         
-        world.set_rule(world.multiworld.get_location("Finish "+station, player), can_make_money & Has(station) & military(station))
+        world.set_rule(world.multiworld.get_location("Finish "+station, player), can_make_money & Has(station+f" Station unlock") & military(station))
     
     for loco in world.all_locos:
-        world.set_rule(world.multiworld.get_location(loco+" orders completed", player), can_make_money & can_operate(loco))
+        world.set_rule(world.multiworld.get_location(loco+" orders completed", player), can_make_money & can_operate(f"{loco} locomotive license"))
         world.set_rule(world.multiworld.get_location(loco+" relic parts to museum", player), can_make_money & HasAll("Museum license","Demo locomotive "+loco))
-        world.set_rule(world.multiworld.get_location(loco+" relic painted", player), can_make_money & HasAllCounts({loco:1, "Paint Sprayer":1, "Manual service license":1, "Museum license":1, "Demo locomotive "+loco: 2}| ({} if True else {"Sand can":2, "Demonstrator Paint Can":2})))
+        world.set_rule(world.multiworld.get_location(loco+" relic painted", player), can_make_money & HasAllCounts({f"{loco} locomotive license":1, "Paint Sprayer":1, "Manual service license":1, "Museum license":1, "Demo locomotive "+loco: 2}| ({} if True else {"Sand can":2, "Demonstrator Paint Can":2})))
     
     world.set_rule(world.multiworld.get_location("DE2 license", player), can_make_money)
     world.set_rule(world.multiworld.get_location("DM3 license", player), can_make_money)

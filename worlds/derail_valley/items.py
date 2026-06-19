@@ -150,26 +150,26 @@ _item_table: List[ItemData] = [
     ItemData("Universal Control Stand", ItemClassification.filler, 0x1F2, 0),
     ItemData("Wireless MU Controller", ItemClassification.filler, 0x1F5, 0),
 
-    ItemData("Coal Mine East Station unlock", ItemClassification.progression, 0x200, 1),
-    ItemData("Coal Mine South Station unlock", ItemClassification.progression, 0x201, 1),
-    ItemData("Coal Power Plant Station unlock", ItemClassification.progression, 0x202, 1),
-    ItemData("City South Station unlock", ItemClassification.progression, 0x203, 1),
-    ItemData("City West Station unlock", ItemClassification.progression, 0x204, 1),
-    ItemData("Food Factory and Town Station unlock", ItemClassification.progression, 0x205, 1),
-    ItemData("Farm Station unlock", ItemClassification.progression, 0x206, 1),
-    ItemData("Forest Central Station unlock", ItemClassification.progression, 0x207, 1),
-    ItemData("Forest South Station unlock", ItemClassification.progression, 0x208, 1),
-    ItemData("Goods Factory and Town Station unlock", ItemClassification.progression, 0x209, 1),
-    ItemData("Harbor and Town Station unlock", ItemClassification.progression, 0x20A, 1),
-    ItemData("Iron Ore Mine East Station unlock", ItemClassification.progression, 0x20B, 1),
-    ItemData("Iron Ore Mine West Station unlock", ItemClassification.progression, 0x20C, 1),
-    ItemData("Military Base Station unlock", ItemClassification.progression, 0x20D, 1),
-    ItemData("Machine Factory and Town Station unlock", ItemClassification.progression, 0x20E, 1),
-    ItemData("Oil Refinery Station unlock", ItemClassification.progression, 0x20F, 1),
-    ItemData("Oil Well Central Station unlock", ItemClassification.progression, 0x210, 1),
-    ItemData("Oil Well North Station unlock", ItemClassification.progression, 0x211, 1),
-    ItemData("Steel Mill Station unlock", ItemClassification.progression, 0x212, 1),
-    ItemData("Sawmill Station unlock", ItemClassification.progression, 0x213, 1),
+    ItemData("CME Station unlock", ItemClassification.progression, 0x200, 1),
+    ItemData("CMS Station unlock", ItemClassification.progression, 0x201, 1),
+    ItemData("CP Station unlock", ItemClassification.progression, 0x202, 1),
+    ItemData("CS Station unlock", ItemClassification.progression, 0x203, 1),
+    ItemData("CW Station unlock", ItemClassification.progression, 0x204, 1),
+    ItemData("FF Station unlock", ItemClassification.progression, 0x205, 1),
+    ItemData("FM Station unlock", ItemClassification.progression, 0x206, 1),
+    ItemData("FRC Station unlock", ItemClassification.progression, 0x207, 1),
+    ItemData("FRS Station unlock", ItemClassification.progression, 0x208, 1),
+    ItemData("GF Station unlock", ItemClassification.progression, 0x209, 1),
+    ItemData("HB Station unlock", ItemClassification.progression, 0x20A, 1),
+    ItemData("IME Station unlock", ItemClassification.progression, 0x20B, 1),
+    ItemData("IMW Station unlock", ItemClassification.progression, 0x20C, 1),
+    ItemData("MB Station unlock", ItemClassification.progression, 0x20D, 1),
+    ItemData("MF Station unlock", ItemClassification.progression, 0x20E, 1),
+    ItemData("OR Station unlock", ItemClassification.progression, 0x20F, 1),
+    ItemData("OWC Station unlock", ItemClassification.progression, 0x210, 1),
+    ItemData("OWN Station unlock", ItemClassification.progression, 0x211, 1),
+    ItemData("SM Station unlock", ItemClassification.progression, 0x212, 1),
+    ItemData("SW Station unlock", ItemClassification.progression, 0x213, 1),
 
     ItemData("Dispatcher license", ItemClassification.useful, 0x300, 1),
     ItemData("Train driver license", ItemClassification.filler, 0x301, 1),
@@ -228,27 +228,27 @@ def get_starting_items(world: "DVWorld"):
         L.append("Dispatcher license")
     match world.options.start_loco:
         case 0:
-            L.append("DE2")
+            L.append("DE2 locomotive license")
         case 1:
-            L.append("DM3")
+            L.append("DM3 locomotive license")
         case 2:
-            L.append("DH4")
+            L.append("DH4 locomotive license")
         case 3:
-            L.append("S060")
+            L.append("S060 locomotive license")
         case 4:
-            L.append("S282")
+            L.append("S282 locomotive license")
         case 5:
-            L.append("DE6")
+            L.append("DE6 locomotive license")
         case 6: # Starter random
-            L.append(world.random.choice(["DE2", "DM3", "S060"]))
-    if "S060" in L or "S282" in L:
-        L.extend(["shovel", "Oiler", "lighter"])
+            L.append(world.random.choice(["DE2 locomotive license", "DM3 locomotive license", "S060 locomotive license"]))
+    if "S060 locomotive license" in L or "S282 locomotive license" in L:
+        L.extend(["Shovel", "Oiler", "Lighter"])
     match world.options.station_licenses:
         case 1:
-            all_stations_but_mb = [x for x in world.all_stations if x != "MB"]
+            all_stations_but_mb = [f"{x} Station unlock" for x in world.all_stations if x != "Military Base"]
             L.append(world.random.choice(all_stations_but_mb))
         case 2:
-            L.extend(world.all_stations)
+            L.append(f"{x} Station unlock" for x in world.all_stations)
     match world.options.start_job:
         case 0:
             L.append("Freight haul license")
