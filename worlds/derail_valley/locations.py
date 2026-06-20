@@ -24,12 +24,21 @@ def get_locations(world: "DVWorld", region: Region) -> List[DVLocation]:
     #         ret.extend([DVLocation(world.player, loc.name, loc.code, "Shop") for loc in all_locations_data if 0x100 <= loc.code and loc.code < 0x400])
     #     case 2:
     #         ret.extend([DVLocation(world.player, loc.name, loc.code, "Shop") for loc in all_locations_data if 0x50 <= loc.code and loc.code < 0x400])
+    
     for k, station in enumerate(world.all_stations):
         for i in range(world.options.nb_shunts.value):
             ret.append(DVLocation(world.player, f"{station} shunting order {i+1}", 0x2000+0x100*k+i, region))
         for i in range(world.options.nb_freights.value):
             ret.append(DVLocation(world.player, f"{station} transport order {i+1}", 0x4000+0x100*k+i, region))
-    ret.extend([DVLocation(world.player, loc.name, loc.code, region) for loc in all_locations_data if 0x400 <= loc.code and loc.code < 0x700])
+    
+    for i, loco in enumerate(locos):
+        if world.options.nb_locos > 0:
+            ret.append(DVLocation(world.player,loco+" orders completed", 0x600+i, region))
+        ret.append(DVLocation(world.player,loco+" relic parts to museum", 0x620+i, region))
+        ret.append(DVLocation(world.player,loco+" relic painted", 0x630+i, region))
+    
+    ret.extend([DVLocation(world.player, loc.name, loc.code, region) for loc in all_locations_data if (0x400 <= loc.code and loc.code < 0x600) or (0x640 <= loc.code and loc.code < 0x700) ])
+    
     for station in all_stations:
         end_station = DVLocation(world.player, "Finish "+station, None, region)
         end_station.place_locked_item(DVItem("Finish "+station, ItemClassification.progression, None, world.player))
@@ -127,6 +136,7 @@ def get_all_locations_data() -> List[DVLocationData]:
         location_table.append(DVLocationData(loco+" orders completed", 0x600+i, "Loco jobs"))
         location_table.append(DVLocationData(loco+" relic parts to museum", 0x620+i, "Museum"))
         location_table.append(DVLocationData(loco+" relic painted", 0x630+i, "Museum"))
+
     location_table.extend([
         DVLocationData("DE2 license", 0x660, "Start"),#G
         DVLocationData("DM3 license", 0x661, "Start"),#G

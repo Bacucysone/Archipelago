@@ -62,7 +62,8 @@ def set_location_rules(world: "DVWorld", location_table: Location) -> None:
         world.set_rule(world.multiworld.get_location("Finish "+station, player), can_make_money & Has(station+f" Station unlock") & military(station))
     
     for loco in world.all_locos:
-        world.set_rule(world.multiworld.get_location(loco+" orders completed", player), can_make_money & can_operate(f"{loco} locomotive license"))
+        if world.options.nb_locos.value > 0:
+            world.set_rule(world.multiworld.get_location(loco+" orders completed", player), can_make_money & can_operate(f"{loco} locomotive license"))
         world.set_rule(world.multiworld.get_location(loco+" relic parts to museum", player), can_make_money & HasAll("Museum license","Demo locomotive "+loco))
         world.set_rule(world.multiworld.get_location(loco+" relic painted", player), can_make_money & HasAllCounts({f"{loco} locomotive license":1, "Paint Sprayer":1, "Manual service license":1, "Museum license":1, "Demo locomotive "+loco: 2}| ({} if True else {"Sand can":2, "Demonstrator Paint Can":2})))
     
