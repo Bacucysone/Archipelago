@@ -58,7 +58,7 @@ class PropDoubleJob(Range):
     default=10
 
 class NbShuntings(Range):
-    """How many shuntings give unique items"""
+    """How many shuntings per station give unique items"""
     display_name="Number of shunting jobs locations"
     range_start=1
     range_end=256
@@ -72,7 +72,7 @@ class NbLocos(Range):
     default=5
 
 class NbFreights(Range):
-    """How many transport jobs give unique items"""
+    """How many transport jobs per station give unique items"""
     display_name="Number of transport jobs locations"
     range_start=1
     range_end=256
