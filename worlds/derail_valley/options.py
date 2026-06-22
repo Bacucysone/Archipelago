@@ -87,6 +87,11 @@ class NbFreights(Range):
 #     option_unique = 1
 #     option_full = 2
 
+class MuseumChecks(Toggle):
+    """Add checks for retrieving parts for the demonstrators at MF and
+    painting them using the paint sprayer."""
+    display_name="Museum checks"
+
 class NbJobs(Range):
     """To win the randomizer, you will need to perform at least N shunting or
     transport jobs from M stations. Here you choose N."""
@@ -154,6 +159,7 @@ class DVOptions(PerGameCommonOptions):
     nb_freights: NbFreights
     nb_shunts: NbShuntings
     nb_locos: NbLocos
+    museum_checks: MuseumChecks
     #shop: RandoShops
     start_job: StartJobLicenses
     #shop_hint: ShopHint
