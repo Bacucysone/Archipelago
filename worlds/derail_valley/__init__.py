@@ -8,7 +8,6 @@ from .locations import get_locations, get_all_locations_data
 from .rules import set_location_rules
 from .options import dv_option_groups, DVOptions
 from .regions import init_areas
-from .options import DVOptions, dv_option_groups
 
 class DVWeb(WebWorld):
     theme = "stone"
@@ -30,7 +29,7 @@ class DVWeb(WebWorld):
 class DVWorld(World):
     """Drive a collection of locomotives to earn money, licenses, and find the relic demonstrator locomotives"""
     game = "Derail Valley"
-    option_definitions = DVOptions
+    # option_definitions = DVOptions
     data_version=1
 
     options_dataclass = DVOptions  # options the player can set
@@ -118,6 +117,7 @@ class DVWorld(World):
                 "HintsOnLocoLicense": self.options.hints_loco.value == 1,
                 "HintsOnStationLicense": self.options.hints_station.value == 1,
                 "DeathLink": self.options.death_link.value == 1,
+                "HintsOnLicenseManager": self.options.hints_license_manager == 1,
             },
             "StartStation": self.starting_station
         }

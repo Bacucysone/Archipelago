@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from Options import (Toggle, PerGameCommonOptions, OptionGroup, Choice, Range, DeathLink)
+from Options import Toggle, PerGameCommonOptions, OptionGroup, Choice, Range, DeathLink
 
 class Dispatcher(Choice):
     """Choose what to do with dispatcher license:
@@ -130,6 +130,10 @@ class HintsForFirstLicenses(Toggle):
     in-logic station license you can have."""
     display_name="Hints for fully randomized progression items"
 
+class HintsForLicenseManager(Toggle):
+    """Gives you hints for the items available through the license manager by going to the buy screen for each item."""
+    display_name="Hints at license manager"
+
 # class ShopHint(Choice):
 #     """Choose what is displayed as description of AP shop item
 #     (no effect is shop is not randomized)
@@ -145,23 +149,24 @@ class HintsForFirstLicenses(Toggle):
 
 @dataclass
 class DVOptions(PerGameCommonOptions):
-    dispatcher: Dispatcher
-    start_loco: StartLocoLicenses
-    station_licenses: StationLicenses
-    money: StartingMoney
     nb_jobs: NbJobs
     nb_stations: NbStations
+    dispatcher: Dispatcher
+    station_licenses: StationLicenses
+    start_job: StartJobLicenses
+    start_loco: StartLocoLicenses
+    money: StartingMoney    
     nb_freights: NbFreights
     nb_shunts: NbShuntings
     nb_locos: NbLocos
-    #shop: RandoShops
-    start_job: StartJobLicenses
+    death_link: DeathLink
+    double_tokens: PropDoubleJob
+    #shop: RandoShops    
     #shop_hint: ShopHint
     hints_loco: HintsForLocoLicenses
     hints_station: HintsForStationLicenses
-    death_link: DeathLink
-    double_tokens: PropDoubleJob
     hints_first: HintsForFirstLicenses
+    hints_license_manager: HintsForLicenseManager
 
 dv_option_groups = [
     OptionGroup("End goal", [
@@ -170,7 +175,6 @@ dv_option_groups = [
     ]), 
     OptionGroup("Licenses", [
         Dispatcher,
-        
         StationLicenses,
         StartJobLicenses
     ]),
@@ -191,6 +195,6 @@ dv_option_groups = [
         HintsForLocoLicenses,
         HintsForStationLicenses,
         HintsForFirstLicenses,
+        HintsForLicenseManager,
     ])
-    
 ]
