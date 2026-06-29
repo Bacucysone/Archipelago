@@ -34,8 +34,9 @@ def get_locations(world: "DVWorld", region: Region) -> List[DVLocation]:
     for i, loco in enumerate(locos):
         if world.options.nb_locos > 0:
             ret.append(DVLocation(world.player,loco+" orders completed", 0x600+i, region))
-        ret.append(DVLocation(world.player,loco+" relic parts to museum", 0x620+i, region))
-        ret.append(DVLocation(world.player,loco+" relic painted", 0x630+i, region))
+        if world.options.museum_checks == True:
+            ret.append(DVLocation(world.player,loco+" relic parts to museum", 0x620+i, region))
+            ret.append(DVLocation(world.player,loco+" relic painted", 0x630+i, region))
     
     ret.extend([DVLocation(world.player, loc.name, loc.code, region) for loc in all_locations_data if (0x400 <= loc.code and loc.code < 0x600) or (0x640 <= loc.code and loc.code < 0x700) ])
     

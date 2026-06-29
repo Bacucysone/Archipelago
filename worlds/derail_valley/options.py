@@ -87,6 +87,11 @@ class NbFreights(Range):
 #     option_unique = 1
 #     option_full = 2
 
+class MuseumChecks(Toggle):
+    """Add checks for retrieving parts for the demonstrators at MF and
+    painting them using the paint sprayer."""
+    display_name="Museum checks"
+
 class NbJobs(Range):
     """To win the randomizer, you will need to perform at least N shunting or
     transport jobs from M stations. Here you choose N."""
@@ -151,17 +156,22 @@ class HintsForLicenseManager(Toggle):
 class DVOptions(PerGameCommonOptions):
     nb_jobs: NbJobs
     nb_stations: NbStations
+    
     dispatcher: Dispatcher
     station_licenses: StationLicenses
     start_job: StartJobLicenses
+
     start_loco: StartLocoLicenses
-    money: StartingMoney    
+    money: StartingMoney
+
     nb_freights: NbFreights
     nb_shunts: NbShuntings
     nb_locos: NbLocos
+    museum_checks: MuseumChecks
     death_link: DeathLink
     double_tokens: PropDoubleJob
     #shop: RandoShops    
+
     #shop_hint: ShopHint
     hints_loco: HintsForLocoLicenses
     hints_station: HintsForStationLicenses
@@ -188,6 +198,7 @@ dv_option_groups = [
         NbLocos,
         DeathLink,
         PropDoubleJob,
+        MuseumChecks
         #RandoShops
     ]),
     OptionGroup("Hint policy", [
