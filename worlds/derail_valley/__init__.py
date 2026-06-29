@@ -31,6 +31,7 @@ class DVWorld(World):
     game = "Derail Valley"
     # option_definitions = DVOptions
     data_version=1
+    web = DVWeb()
 
     options_dataclass = DVOptions  # options the player can set
     options: DVOptions  # typing hints for option results

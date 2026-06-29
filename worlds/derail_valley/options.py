@@ -154,16 +154,20 @@ class HintsForLicenseManager(Toggle):
 
 @dataclass
 class DVOptions(PerGameCommonOptions):
+    # End Goal
     nb_jobs: NbJobs
     nb_stations: NbStations
     
+    # Licenses
     dispatcher: Dispatcher
     station_licenses: StationLicenses
     start_job: StartJobLicenses
 
+    # Game preferences
     start_loco: StartLocoLicenses
     money: StartingMoney
 
+    # Randomizer preferences
     nb_freights: NbFreights
     nb_shunts: NbShuntings
     nb_locos: NbLocos
@@ -172,6 +176,7 @@ class DVOptions(PerGameCommonOptions):
     double_tokens: PropDoubleJob
     #shop: RandoShops    
 
+    #Hint policy
     #shop_hint: ShopHint
     hints_loco: HintsForLocoLicenses
     hints_station: HintsForStationLicenses
