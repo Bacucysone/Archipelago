@@ -107,6 +107,9 @@ class DVWorld(World):
         self.multiworld.itempool += pool
     
     def fill_slot_data(self):
+        # Do some checks on the options data
+        if self.options.random_license_price_max.value < self.options.random_license_price_min.value:
+            self.options.random_license_price_max.value = self.options.random_license_price_min.value + 1000
         return {
             "Money": self.options.money.value,
             "Config": {
@@ -119,6 +122,9 @@ class DVWorld(World):
                 "HintsOnStationLicense": self.options.hints_station.value == 1,
                 "DeathLink": self.options.death_link.value == 1,
                 "HintsOnLicenseManager": self.options.hints_license_manager == 1,
+                "RandomiseLicensePrices": self.options.randomise_license_prices == 1,
+                "RandomiseLicensePricesMin": self.options.random_license_price_min.value,
+                "RandomiseLicensePricesMax": self.options.random_license_price_max.value,
             },
             "StartStation": self.starting_station
         }

@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from Options import Toggle, PerGameCommonOptions, OptionGroup, Choice, Range, DeathLink
+from Options import Toggle, PerGameCommonOptions, OptionGroup, Choice, Range, DeathLink, OptionCounter
 
 class Dispatcher(Choice):
     """Choose what to do with dispatcher license:
@@ -121,6 +121,24 @@ class StartJobLicenses(Choice):
     option_no_restriction = 4
     default=3
 
+class RandomiseLicensePrices(Toggle):
+    """Randomise the prices of the licenses in the career manager"""
+    display_name="Randomise license prices"
+
+class RandomiseLicensePricesMin(Range):
+    """Set the minimum price that the license prices can be randomised between."""
+    display_name="Minimum license price"
+    range_start = 100
+    range_end = 100000
+    default = 1000
+
+class RandomiseLicensePricesMax(Range):
+    """Set the maximum price that the license prices can be randomised between."""
+    display_name="Random license price range"
+    range_start = 100
+    range_end = 1000000
+    default = 200000
+
 class HintsForLocoLicenses(Toggle):
     """Add the item locked behind number of jobs with a loco on the corresponding license"""
     display_name="Hints on loco licenses"
@@ -174,7 +192,10 @@ class DVOptions(PerGameCommonOptions):
     museum_checks: MuseumChecks
     death_link: DeathLink
     double_tokens: PropDoubleJob
-    #shop: RandoShops    
+    #shop: RandoShops
+    randomise_license_prices: RandomiseLicensePrices
+    random_license_price_min: RandomiseLicensePricesMin
+    random_license_price_max: RandomiseLicensePricesMax
 
     #Hint policy
     #shop_hint: ShopHint
@@ -203,11 +224,14 @@ dv_option_groups = [
         NbLocos,
         DeathLink,
         PropDoubleJob,
-        MuseumChecks
-        #RandoShops
+        MuseumChecks,
+        #RandoShops,
+        RandomiseLicensePrices,
+        RandomiseLicensePricesMin,
+        RandomiseLicensePricesMax,
     ]),
     OptionGroup("Hint policy", [
-        #ShopHint
+        #ShopHint,
         HintsForLocoLicenses,
         HintsForStationLicenses,
         HintsForFirstLicenses,
