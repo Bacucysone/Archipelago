@@ -102,7 +102,7 @@ _item_table: List[ItemData] = [
     ItemData("Red Light Bar", ItemClassification.filler, 0x1AA, 0),
     ItemData("White Light Bar", ItemClassification.filler, 0x1AB, 0),
     ItemData("Yellow Light Bar", ItemClassification.filler, 0x1AC, 0),
-    ItemData("Lighter", ItemClassification.progression, 0x1AE, 1),
+    ItemData("Lighter", ItemClassification.progression, 0x1AD, 1),
     ItemData("High-tech Headlight Left", ItemClassification.filler, 0x1B2, 0),
     ItemData("High-tech Headlight Right", ItemClassification.filler, 0x1B3, 0),
     ItemData("High-tech Taillight Left", ItemClassification.filler, 0x1B4, 0),
