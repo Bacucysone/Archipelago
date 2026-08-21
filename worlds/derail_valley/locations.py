@@ -25,11 +25,11 @@ def get_locations(world: "DVWorld", region: Region) -> List[DVLocation]:
     #     case 2:
     #         ret.extend([DVLocation(world.player, loc.name, loc.code, "Shop") for loc in all_locations_data if 0x50 <= loc.code and loc.code < 0x400])
     
-    for k, station in enumerate(world.all_stations):
-        for i in range(world.options.nb_shunts.value):
-            ret.append(DVLocation(world.player, f"{station} shunting order {i+1}", 0x2000+0x100*k+i, region))
-        for i in range(world.options.nb_freights.value):
-            ret.append(DVLocation(world.player, f"{station} transport order {i+1}", 0x4000+0x100*k+i, region))
+    for i, station in enumerate(world.all_stations):
+        for k in range(world.options.nb_shunts.value):
+            ret.append(DVLocation(world.player, f"{station} shunting order {k+1}", 0x2000+0x100*i+k, region))
+        for k in range(world.options.nb_freights.value):
+            ret.append(DVLocation(world.player, f"{station} transport order {k+1}", 0x4000+0x100*i+k, region))
     
     for i, loco in enumerate(locos):
         if world.options.nb_locos > 0:
@@ -129,8 +129,8 @@ def get_all_locations_data() -> List[DVLocationData]:
 
     
     for i, station in enumerate(all_stations):
-        location_table.extend([DVLocationData(f"{station} shunting order {k+1}", 0x2000+0x100*i+k, "Shunting jobs") for k in range(10)])
-        location_table.extend([DVLocationData(f"{station} transport order {k+1}", 0x4000+i*0x100+k, "Transport jobs") for k in range(10)])
+        location_table.extend([DVLocationData(f"{station} shunting order {k+1}", 0x2000+0x100*i+k, "Shunting jobs") for k in range(256)])
+        location_table.extend([DVLocationData(f"{station} transport order {k+1}", 0x4000+i*0x100+k, "Transport jobs") for k in range(256)])
     
     all_locos = ["DE2", "DM3", "DH4", "DE6", "S060", "S282"]
     for i, loco in enumerate(all_locos):
