@@ -1,0 +1,608 @@
+{
+  "$schema": "https://github.com/ManualForArchipelago/Manual/raw/main/schemas/Manual.regions.schema.json",
+  "Germany": {
+    "requires": "|Germany Key|",
+    "connects_to": [
+      "Netherlands",
+      "Belgium",
+      "Luxembourg",
+      "France",
+      "Switzerland",
+      "Austria",
+      "Czech Republic",
+      "Poland",
+      "Denmark",
+      "Sweden",
+      "Latvia",
+      "Finland"
+    ]
+  },
+  "Albania": {
+    "requires": "|Albania Key|",
+    "connects_to": [
+      "Montenegro",
+      "North Macedonia",
+      "Kosovo",
+      "Italy",
+      "Greece"
+    ]
+  },
+  "Austria": {
+    "requires": "|Austria Key|",
+    "connects_to": [
+      "Italy",
+      "Switzerland",
+      "Germany",
+      "Czech Republic",
+      "Slovakia",
+      "Hungary",
+      "Slovenia",
+      "Liechtenstein"
+    ]
+  },
+  "Armenia": {
+    "requires": "|Armenia Key|",
+    "connects_to": [
+      "Georgia",
+      "Azerbaijan"
+    ]
+  },
+  "Azerbaijan": {
+    "requires": "|Azerbaijan Key|",
+    "connects_to": [
+      "Georgia",
+      "Armenia"
+    ]
+  },
+  "Belgium": {
+    "requires": "|Belgium Key|",
+    "connects_to": [
+      "Netherlands",
+      "Germany",
+      "Luxembourg",
+      "France"
+    ]
+  },
+  "Bosnia and Herzegovina": {
+    "requires": "|Bosnia and Herzegovina Key|",
+    "connects_to": [
+      "Croatia",
+      "Serbia",
+      "Montenegro"
+    ]
+  },
+  "Bulgaria": {
+    "requires": "|Bulgaria Key|",
+    "connects_to": [
+      "Romania",
+      "Serbia",
+      "Türkiye",
+      "North Macedonia",
+      "Georgia",
+      "Greece"
+    ]
+  },
+  "Croatia": {
+    "requires": "|Croatia Key|",
+    "connects_to": [
+      "Serbia",
+      "Bosnia and Herzegovina",
+      "Slovenia",
+      "Hungary",
+      "Italy"
+    ]
+  },
+  "Czech Republic": {
+    "requires": "|Czech Republic Key|",
+    "connects_to": [
+      "Austria",
+      "Germany",
+      "Poland",
+      "Slovakia"
+    ]
+  },
+  "Denmark": {
+    "requires": "|Denmark Key|",
+    "connects_to": [
+      "Germany",
+      "Sweden",
+      "Norway",
+      "United Kingdom",
+      "Faroe Islands",
+      "Iceland"
+    ]
+  },
+  "Estonia": {
+    "requires": "|Estonia Key|",
+    "connects_to": [
+      "Russia",
+      "Latvia",
+      "Finland",
+      "Sweden"
+    ]
+  },
+  "Finland": {
+    "requires": "|Finland Key|",
+    "connects_to": [
+      "Russia",
+      "Sweden",
+      "Norway",
+      "Estonia",
+      "Germany"
+    ]
+  },
+  "France": {
+    "requires": "|France Key|",
+    "connects_to": [
+      "Spain",
+      "Belgium",
+      "Germany",
+      "Luxembourg",
+      "Switzerland",
+      "Italy",
+      "United Kingdom",
+      "Andorra",
+      "Ireland",
+      "Jersey",
+      "Guernesey",
+      "Monaco",
+      "Morocco",
+      "Tunisia"
+    ]
+  },
+  "Greece": {
+    "requires": "|Greece Key|",
+    "connects_to": [
+      "Albania",
+      "North Macedonia",
+      "Bulgaria",
+      "Türkiye",
+      "Italy",
+      "Cyprus"
+    ]
+  },
+  "Georgia": {
+    "requires": "|Georgia Key|",
+    "connects_to": [
+      "Armenia",
+      "Azerbaijan",
+      "Ukraine",
+      "Romania",
+      "Türkiye",
+      "Bulgaria"
+    ]
+  },
+  "Greenland": {
+    "requires": "|Greenland Key|",
+    "connects_to": [
+      "Iceland"
+    ]
+  },
+  "Guernesey": {
+    "requires": "|Guernesey Key|",
+    "connects_to": [
+      "France",
+      "Ireland",
+      "United Kingdom"
+    ]
+  },
+  "Hungary": {
+    "requires": "|Hungary Key|",
+    "connects_to": [
+      "Austria",
+      "Slovakia",
+      "Romania",
+      "Serbia",
+      "Croatia",
+      "Slovenia",
+      "Ukraine"
+    ]
+  },
+  "Italy": {
+    "requires": "|Italy Key|",
+    "connects_to": [
+      "France",
+      "Switzerland",
+      "Austria",
+      "Slovenia",
+      "Spain",
+      "Croatia",
+      "Albania",
+      "Greece",
+      "Malta",
+      "Tunisia"
+    ]
+  },
+  "Jersey": {
+    "requires": "|Jersey Key|",
+    "connects_to": [
+      "France",
+      "Ireland",
+      "United Kingdom"
+    ]
+  },
+  "Kaliningrad": {
+    "requires": "|Kaliningrad Key|",
+    "connects_to": [
+      "Lithuania",
+      "Poland"
+    ]
+  },
+  "Kosovo": {
+    "requires": "|Kosovo Key|",
+    "connects_to": [
+      "North Macedonia",
+      "Montenegro",
+      "Albania",
+      "Serbia"
+    ]
+  },
+  "Latvia": {
+    "requires": "|Latvia Key|",
+    "connects_to": [
+      "Russia",
+      "Estonia",
+      "Lithuania",
+      "Sweden",
+      "Germany"
+    ]
+  },
+  "Lithuania": {
+    "requires": "|Lithuania Key|",
+    "connects_to": [
+      "Kaliningrad",
+      "Latvia"
+    ]
+  },
+  "Luxembourg": {
+    "requires": "|Luxembourg Key|",
+    "connects_to": [
+      "Belgium",
+      "Germany",
+      "France"
+    ]
+  },
+  "Monaco": {
+    "requires": "|Monaco Key|",
+    "connects_to": [
+      "France"
+    ]
+  },
+  "Malta": {
+    "requires": "|Malta Key|",
+    "connects_to": [
+      "Italy"
+    ]
+  },
+  "Montenegro": {
+    "requires": "|Montenegro Key|",
+    "connects_to": [
+      "Bosnia and Herzegovina",
+      "Serbia",
+      "Kosovo",
+      "Albania"
+    ]
+  },
+  "Netherlands": {
+    "requires": "|Netherlands Key|",
+    "connects_to": [
+      "Belgium",
+      "Germany",
+      "United Kingdom"
+    ]
+  },
+  "North Macedonia": {
+    "requires": "|North Macedonia Key|",
+    "connects_to": [
+      "Albania",
+      "Serbia",
+      "Kosovo",
+      "Bulgaria",
+      "Greece"
+    ]
+  },
+  "Norway": {
+    "requires": "|Norway Key|",
+    "connects_to": [
+      "Sweden",
+      "Denmark",
+      "Finland",
+      "Faroe Islands",
+      "Iceland"
+    ]
+  },
+  "Poland": {
+    "requires": "|Poland Key|",
+    "connects_to": [
+      "Germany",
+      "Czech Republic",
+      "Slovakia",
+      "Kaliningrad",
+      "Sweden",
+      "Ukraine"
+    ]
+  },
+  "Portugal": {
+    "requires": "|Portugal Key|",
+    "connects_to": [
+      "Spain"
+    ]
+  },
+  "Romania": {
+    "requires": "|Romania Key|",
+    "connects_to": [
+      "Hungary",
+      "Serbia",
+      "Bulgaria",
+      "Moldova",
+      "Georgia",
+      "Ukraine"
+    ]
+  },
+  "Russia": {
+    "requires": "|Russia Key|",
+    "connects_to": [
+      "Finland",
+      "Estonia",
+      "Latvia",
+      "Georgia",
+      "Ukraine"
+    ]
+  },
+  "Serbia": {
+    "requires": "|Serbia Key|",
+    "connects_to": [
+      "North Macedonia",
+      "Montenegro",
+      "Kosovo",
+      "Bosnia and Herzegovina",
+      "Croatia",
+      "Hungary",
+      "Romania",
+      "Bulgaria"
+    ]
+  },
+  "Slovakia": {
+    "requires": "|Slovakia Key|",
+    "connects_to": [
+      "Poland",
+      "Czech Republic",
+      "Austria",
+      "Hungary",
+      "Ukraine"
+    ]
+  },
+  "Slovenia": {
+    "requires": "|Slovenia Key|",
+    "connects_to": [
+      "Austria",
+      "Italy",
+      "Hungary",
+      "Croatia"
+    ]
+  },
+  "Spain": {
+    "requires": "|Spain Key|",
+    "connects_to": [
+      "France",
+      "Italy",
+      "Portugal",
+      "United Kingdom",
+      "Andorra",
+      "Morocco"
+    ]
+  },
+  "Sweden": {
+    "requires": "|Sweden Key|",
+    "connects_to": [
+      "Norway",
+      "Denmark",
+      "Finland",
+      "Estonia",
+      "Latvia",
+      "Poland",
+      "Germany"
+    ]
+  },
+  "Switzerland": {
+    "requires": "|Switzerland Key|",
+    "connects_to": [
+      "France",
+      "Germany",
+      "Austria",
+      "Italy",
+      "Liechtenstein"
+    ]
+  },
+  "Türkiye": {
+    "requires": "|Türkiye Key|",
+    "connects_to": [
+      "Bulgaria",
+      "Greece",
+      "Georgia",
+      "Cyprus",
+      "Syria"
+    ]
+  },
+  "United Kingdom": {
+    "requires": "|United Kingdom Key|",
+    "connects_to": [
+      "Denmark",
+      "France",
+      "Netherlands",
+      "Spain",
+      "Ireland",
+      "Isle of Man",
+      "Iceland",
+      "Jersey",
+      "Guernesey"
+    ]
+  },
+  "Ireland": {
+    "requires": "|Ireland Key|",
+    "connects_to": [
+      "United Kingdom",
+      "France",
+      "Jersey",
+      "Guernesey"
+    ]
+  },
+  "Liechtenstein": {
+    "requires": "|Liechtenstein Key|",
+    "connects_to": [
+      "Switzerland",
+      "Austria"
+    ]
+  },
+  "Faroe Islands": {
+    "requires": "|Faroe Islands Key|",
+    "connects_to": [
+      "Denmark",
+      "Norway",
+      "Iceland"
+    ]
+  },
+  "Andorra": {
+    "requires": "|Andorra Key|",
+    "connects_to": [
+      "France",
+      "Spain"
+    ]
+  },
+  "Isle of Man": {
+    "requires": "|Isle of Man Key|",
+    "connects_to": [
+      "United Kingdom"
+    ]
+  },
+  "Iceland": {
+    "requires": "|Iceland Key|",
+    "connects_to": [
+      "Denmark",
+      "Norway",
+      "Faroe Islands",
+      "United Kingdom",
+      "Greenland"
+    ]
+  },
+  "Cyprus": {
+    "requires": "|Cyprus Key|",
+    "connects_to": [
+      "Greece",
+      "Türkiye",
+      "Egypt",
+      "Israel",
+      "Lebanon",
+      "Syria"
+
+    ]
+  },
+  "Moldova": {
+    "requires": "|Moldova Key|",
+    "connects_to": [
+      "Romania",
+      "Ukraine"
+    ]
+  },
+  "Ukraine": {
+    "requires": "|Ukraine Key|",
+    "connects_to": [
+      "Poland",
+      "Slovakia",
+      "Hungary",
+      "Romania",
+      "Moldova",
+      "Georgia",
+      "Russia"
+    ]
+  },
+  "Morocco": {
+    "requires": "|Morocco Key|",
+    "connects_to": [
+      "Spain",
+      "France"
+    ]
+  },
+  "Tunisia": {
+    "requires": "|Tunisia Key|",
+    "connects_to": [
+      "Italy",
+      "France"
+    ]
+  },
+  "Iraq": {
+    "requires": "|Iraq Key|",
+    "connects_to": [
+      "Jordan",
+      "Syria"
+    ]
+  },
+  "Israel": {
+    "requires": "|Israel Key|",
+    "connects_to": [
+      "West Bank",
+      "Jordan",
+      "Egypt",
+      "Syria",
+      "Lebanon",
+      "Cyprus"
+    ]
+  },
+  "Jordan": {
+    "requires": "|Jordan Key|",
+    "connects_to": [
+      "West Bank",
+      "Israel",
+      "Iraq",
+      "Syria",
+      "Egypt"
+    ]
+
+  },
+  "Syria": {
+    "requires": "|Syria Key|",
+    "connects_to": [
+      "Türkiye",
+      "Cyprus",
+      "Lebanon",
+      "Jordan",
+      "Iraq"
+    ]
+  },
+  "West Bank": {
+    "requires": "|West Bank Key|",
+    "connects_to": [
+      "Israel",
+      "Jordan"
+    ]
+  },
+  "Egypt": {
+    "requires": "|Egypt Key|",
+    "connects_to": [
+      "Cyprus",
+      "Jordan",
+      "Israel"
+    ]
+  },
+  "Kazakshtan": {
+    "requires": "|Kazakshtan Key|",
+    "connects_to": [
+      "Azerbaijan",
+      "Uzbekistan"
+    ]
+  },
+  "Uzbekistan": {
+    "requires": "|Uzbekistan Key|",
+    "connects_to": [
+      "Kazakshtan"
+    ]
+  },
+  "Lebanon": {
+    "requires": "|Lebanon Key|",
+    "connects_to": [
+      "Syria",
+      "Israel",
+      "Cyprus"
+    ]
+  }
+}

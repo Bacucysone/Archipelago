@@ -1,0 +1,341 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key id="d0" for="node" attr.name="color" attr.type="string" />
+  <graph edgedefault="undirected">
+    <node id="Germany">
+      <data key="d0">red</data>
+    </node>
+    <node id="Netherlands">
+      <data key="d0">red</data>
+    </node>
+    <node id="Belgium">
+      <data key="d0">red</data>
+    </node>
+    <node id="Luxembourg">
+      <data key="d0">red</data>
+    </node>
+    <node id="France">
+      <data key="d0">red</data>
+    </node>
+    <node id="Switzerland">
+      <data key="d0">green</data>
+    </node>
+    <node id="Austria">
+      <data key="d0">green</data>
+    </node>
+    <node id="Czech Republic">
+      <data key="d0">green</data>
+    </node>
+    <node id="Poland">
+      <data key="d0">green</data>
+    </node>
+    <node id="Denmark">
+      <data key="d0">green</data>
+    </node>
+    <node id="Sweden">
+      <data key="d0">green</data>
+    </node>
+    <node id="Latvia">
+      <data key="d0">green</data>
+    </node>
+    <node id="Finland">
+      <data key="d0">red</data>
+    </node>
+    <node id="Albania">
+      <data key="d0">red</data>
+    </node>
+    <node id="Montenegro">
+      <data key="d0">green</data>
+    </node>
+    <node id="North Macedonia">
+      <data key="d0">red</data>
+    </node>
+    <node id="Kosovo">
+      <data key="d0">green</data>
+    </node>
+    <node id="Italy">
+      <data key="d0">green</data>
+    </node>
+    <node id="Greece">
+      <data key="d0">green</data>
+    </node>
+    <node id="Slovakia">
+      <data key="d0">red</data>
+    </node>
+    <node id="Hungary">
+      <data key="d0">green</data>
+    </node>
+    <node id="Slovenia">
+      <data key="d0">green</data>
+    </node>
+    <node id="Liechtenstein">
+      <data key="d0">red</data>
+    </node>
+    <node id="Armenia">
+      <data key="d0">red</data>
+    </node>
+    <node id="Georgia">
+      <data key="d0">red</data>
+    </node>
+    <node id="Azerbaijan">
+      <data key="d0">purple</data>
+    </node>
+    <node id="Bosnia and Herzegovina">
+      <data key="d0">red</data>
+    </node>
+    <node id="Croatia">
+      <data key="d0">green</data>
+    </node>
+    <node id="Serbia">
+      <data key="d0">green</data>
+    </node>
+    <node id="Bulgaria">
+      <data key="d0">green</data>
+    </node>
+    <node id="Romania">
+      <data key="d0">green</data>
+    </node>
+    <node id="Türkiye">
+      <data key="d0">green</data>
+    </node>
+    <node id="Norway">
+      <data key="d0">green</data>
+    </node>
+    <node id="United Kingdom">
+      <data key="d0">green</data>
+    </node>
+    <node id="Faroe Islands">
+      <data key="d0">green</data>
+    </node>
+    <node id="Iceland">
+      <data key="d0">red</data>
+    </node>
+    <node id="Estonia">
+      <data key="d0">green</data>
+    </node>
+    <node id="Russia">
+      <data key="d0">red</data>
+    </node>
+    <node id="Spain">
+      <data key="d0">green</data>
+    </node>
+    <node id="Andorra">
+      <data key="d0">gold</data>
+    </node>
+    <node id="Ireland">
+      <data key="d0">red</data>
+    </node>
+    <node id="Jersey">
+      <data key="d0">green</data>
+    </node>
+    <node id="Guernesey">
+      <data key="d0">red</data>
+    </node>
+    <node id="Monaco">
+      <data key="d0">red</data>
+    </node>
+    <node id="Morocco">
+      <data key="d0">gold</data>
+    </node>
+    <node id="Tunisia">
+      <data key="d0">gold</data>
+    </node>
+    <node id="Cyprus">
+      <data key="d0">red</data>
+    </node>
+    <node id="Ukraine">
+      <data key="d0">red</data>
+    </node>
+    <node id="Greenland">
+      <data key="d0">purple</data>
+    </node>
+    <node id="Malta">
+      <data key="d0">red</data>
+    </node>
+    <node id="Kaliningrad">
+      <data key="d0">red</data>
+    </node>
+    <node id="Lithuania">
+      <data key="d0">red</data>
+    </node>
+    <node id="Portugal">
+      <data key="d0">gold</data>
+    </node>
+    <node id="Moldova">
+      <data key="d0">red</data>
+    </node>
+    <node id="Syria">
+      <data key="d0">green</data>
+    </node>
+    <node id="Isle of Man">
+      <data key="d0">red</data>
+    </node>
+    <node id="Egypt">
+      <data key="d0">green</data>
+    </node>
+    <node id="Israel">
+      <data key="d0">red</data>
+    </node>
+    <node id="Lebanon">
+      <data key="d0">green</data>
+    </node>
+    <node id="Iraq">
+      <data key="d0">green</data>
+    </node>
+    <node id="Jordan">
+      <data key="d0">green</data>
+    </node>
+    <node id="West Bank">
+      <data key="d0">green</data>
+    </node>
+    <node id="Kazakshtan">
+      <data key="d0">red</data>
+    </node>
+    <node id="Uzbekistan">
+      <data key="d0">red</data>
+    </node>
+    <edge source="Germany" target="Netherlands" />
+    <edge source="Germany" target="Belgium" />
+    <edge source="Germany" target="Luxembourg" />
+    <edge source="Germany" target="France" />
+    <edge source="Germany" target="Switzerland" />
+    <edge source="Germany" target="Austria" />
+    <edge source="Germany" target="Czech Republic" />
+    <edge source="Germany" target="Poland" />
+    <edge source="Germany" target="Denmark" />
+    <edge source="Germany" target="Sweden" />
+    <edge source="Germany" target="Latvia" />
+    <edge source="Germany" target="Finland" />
+    <edge source="Netherlands" target="Belgium" />
+    <edge source="Netherlands" target="United Kingdom" />
+    <edge source="Belgium" target="Luxembourg" />
+    <edge source="Belgium" target="France" />
+    <edge source="Luxembourg" target="France" />
+    <edge source="France" target="Spain" />
+    <edge source="France" target="Switzerland" />
+    <edge source="France" target="Italy" />
+    <edge source="France" target="United Kingdom" />
+    <edge source="France" target="Andorra" />
+    <edge source="France" target="Ireland" />
+    <edge source="France" target="Jersey" />
+    <edge source="France" target="Guernesey" />
+    <edge source="France" target="Monaco" />
+    <edge source="France" target="Morocco" />
+    <edge source="France" target="Tunisia" />
+    <edge source="Switzerland" target="Austria" />
+    <edge source="Switzerland" target="Italy" />
+    <edge source="Switzerland" target="Liechtenstein" />
+    <edge source="Austria" target="Italy" />
+    <edge source="Austria" target="Czech Republic" />
+    <edge source="Austria" target="Slovakia" />
+    <edge source="Austria" target="Hungary" />
+    <edge source="Austria" target="Slovenia" />
+    <edge source="Austria" target="Liechtenstein" />
+    <edge source="Czech Republic" target="Poland" />
+    <edge source="Czech Republic" target="Slovakia" />
+    <edge source="Poland" target="Kaliningrad" />
+    <edge source="Poland" target="Slovakia" />
+    <edge source="Poland" target="Sweden" />
+    <edge source="Poland" target="Ukraine" />
+    <edge source="Denmark" target="Sweden" />
+    <edge source="Denmark" target="Norway" />
+    <edge source="Denmark" target="United Kingdom" />
+    <edge source="Denmark" target="Faroe Islands" />
+    <edge source="Denmark" target="Iceland" />
+    <edge source="Sweden" target="Estonia" />
+    <edge source="Sweden" target="Finland" />
+    <edge source="Sweden" target="Latvia" />
+    <edge source="Sweden" target="Norway" />
+    <edge source="Latvia" target="Estonia" />
+    <edge source="Latvia" target="Russia" />
+    <edge source="Latvia" target="Lithuania" />
+    <edge source="Finland" target="Estonia" />
+    <edge source="Finland" target="Russia" />
+    <edge source="Finland" target="Norway" />
+    <edge source="Albania" target="Montenegro" />
+    <edge source="Albania" target="North Macedonia" />
+    <edge source="Albania" target="Kosovo" />
+    <edge source="Albania" target="Italy" />
+    <edge source="Albania" target="Greece" />
+    <edge source="Montenegro" target="Bosnia and Herzegovina" />
+    <edge source="Montenegro" target="Kosovo" />
+    <edge source="Montenegro" target="Serbia" />
+    <edge source="North Macedonia" target="Bulgaria" />
+    <edge source="North Macedonia" target="Greece" />
+    <edge source="North Macedonia" target="Kosovo" />
+    <edge source="North Macedonia" target="Serbia" />
+    <edge source="Kosovo" target="Serbia" />
+    <edge source="Italy" target="Croatia" />
+    <edge source="Italy" target="Greece" />
+    <edge source="Italy" target="Slovenia" />
+    <edge source="Italy" target="Spain" />
+    <edge source="Italy" target="Malta" />
+    <edge source="Italy" target="Tunisia" />
+    <edge source="Greece" target="Bulgaria" />
+    <edge source="Greece" target="Türkiye" />
+    <edge source="Greece" target="Cyprus" />
+    <edge source="Slovakia" target="Hungary" />
+    <edge source="Slovakia" target="Ukraine" />
+    <edge source="Hungary" target="Croatia" />
+    <edge source="Hungary" target="Romania" />
+    <edge source="Hungary" target="Serbia" />
+    <edge source="Hungary" target="Slovenia" />
+    <edge source="Hungary" target="Ukraine" />
+    <edge source="Slovenia" target="Croatia" />
+    <edge source="Armenia" target="Georgia" />
+    <edge source="Armenia" target="Azerbaijan" />
+    <edge source="Georgia" target="Azerbaijan" />
+    <edge source="Georgia" target="Bulgaria" />
+    <edge source="Georgia" target="Ukraine" />
+    <edge source="Georgia" target="Romania" />
+    <edge source="Georgia" target="Türkiye" />
+    <edge source="Georgia" target="Russia" />
+    <edge source="Azerbaijan" target="Kazakshtan" />
+    <edge source="Bosnia and Herzegovina" target="Croatia" />
+    <edge source="Bosnia and Herzegovina" target="Serbia" />
+    <edge source="Croatia" target="Serbia" />
+    <edge source="Serbia" target="Bulgaria" />
+    <edge source="Serbia" target="Romania" />
+    <edge source="Bulgaria" target="Romania" />
+    <edge source="Bulgaria" target="Türkiye" />
+    <edge source="Romania" target="Moldova" />
+    <edge source="Romania" target="Ukraine" />
+    <edge source="Türkiye" target="Cyprus" />
+    <edge source="Türkiye" target="Syria" />
+    <edge source="Norway" target="Faroe Islands" />
+    <edge source="Norway" target="Iceland" />
+    <edge source="United Kingdom" target="Guernesey" />
+    <edge source="United Kingdom" target="Jersey" />
+    <edge source="United Kingdom" target="Spain" />
+    <edge source="United Kingdom" target="Ireland" />
+    <edge source="United Kingdom" target="Isle of Man" />
+    <edge source="United Kingdom" target="Iceland" />
+    <edge source="Faroe Islands" target="Iceland" />
+    <edge source="Iceland" target="Greenland" />
+    <edge source="Estonia" target="Russia" />
+    <edge source="Russia" target="Ukraine" />
+    <edge source="Spain" target="Portugal" />
+    <edge source="Spain" target="Andorra" />
+    <edge source="Spain" target="Morocco" />
+    <edge source="Ireland" target="Guernesey" />
+    <edge source="Ireland" target="Jersey" />
+    <edge source="Cyprus" target="Egypt" />
+    <edge source="Cyprus" target="Israel" />
+    <edge source="Cyprus" target="Lebanon" />
+    <edge source="Cyprus" target="Syria" />
+    <edge source="Ukraine" target="Moldova" />
+    <edge source="Kaliningrad" target="Lithuania" />
+    <edge source="Syria" target="Iraq" />
+    <edge source="Syria" target="Israel" />
+    <edge source="Syria" target="Jordan" />
+    <edge source="Syria" target="Lebanon" />
+    <edge source="Egypt" target="Israel" />
+    <edge source="Egypt" target="Jordan" />
+    <edge source="Israel" target="West Bank" />
+    <edge source="Israel" target="Jordan" />
+    <edge source="Israel" target="Lebanon" />
+    <edge source="Iraq" target="Jordan" />
+    <edge source="Jordan" target="West Bank" />
+    <edge source="Kazakshtan" target="Uzbekistan" />
+  </graph>
+</graphml>
