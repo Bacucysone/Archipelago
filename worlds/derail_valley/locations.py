@@ -78,7 +78,7 @@ def get_all_locations_data() -> List[DVLocationData]:
 		DVLocationData("GF Loco Spawn Shed right", 0x406, "Museum"),
 		DVLocationData("IME / A1L", 0x407, "Museum"),
 		DVLocationData("HB Loco Spawn", 0x408, "Museum"),
-		DVLocationData("HB D yard Shed", 0x409, "Museum"),
+		DVLocationData("HB / G1S", 0x409, "Museum"),
 		DVLocationData("IMW / B8L North", 0x40A, "Museum"),
 		DVLocationData("GF /A3S", 0x40B, "Museum"),
 		DVLocationData("CP / A6S South", 0x40C, "Museum"),
