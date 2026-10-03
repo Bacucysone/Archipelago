@@ -37,7 +37,7 @@ def get_locations(world: "DVWorld", region: Region) -> List[DVLocation]:
         if world.options.museum_checks == True:
             ret.append(DVLocation(world.player,loco+" relic parts to museum", 0x620+i, region))
             ret.append(DVLocation(world.player,loco+" relic painted", 0x630+i, region))
-        end_relic = DVLocation(world.player, f"Finish {loco} relic", None, world.player)
+        end_relic = DVLocation(world.player, f"Finish {loco} relic", None, region)
         end_relic.place_locked_item(DVItem(f"Finish {loco} relic", ItemClassification.progression, None, world.player))
         ret.append(end_relic)
     
