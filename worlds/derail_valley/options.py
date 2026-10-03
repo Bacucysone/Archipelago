@@ -1,6 +1,14 @@
 from dataclasses import dataclass
 from Options import Toggle, PerGameCommonOptions, OptionGroup, Choice, Range, DeathLink, OptionCounter
 
+class VictoryCondition(Choice):
+    """Choose your victory condition:
+        Number of jobs: You need to finish a set number of jobs in different stations to win
+        Demo loco: You need to restore (including painting) a set number of demo locos to win
+    """
+    display_name="Victory condition"
+    option_number_of_jobs = 0
+    option_demo_loco = 1
 class Dispatcher(Choice):
     """Choose what to do with dispatcher license:
         From start: you get it by the start of the game
@@ -93,7 +101,7 @@ class MuseumChecks(Toggle):
     display_name="Museum checks"
 
 class NbJobs(Range):
-    """To win the randomizer, you will need to perform at least N shunting or
+    """[If you chose number of jobs victory cond] To win the randomizer, you will need to perform at least N shunting or
     transport jobs from M stations. Here you choose N."""
     display_name="Number of jobs required to finish a station"
     range_start=1
@@ -101,13 +109,21 @@ class NbJobs(Range):
     default=7
 
 class NbStations(Range):
-    """To win the randomizer, you will need to perform at least N shunting or
+    """[If you chose number of jobs victory cond] To win the randomizer, you will need to perform at least N shunting or
     transport jobs from M stations. Here you choose M."""
     display_name="Number of finished stations required to beat the game"
     range_start=1
     range_end=20
     default=7
 
+class NbDemoLocos(Range):
+    """[If you chose demo loco victory cond] Choose the number
+    of demonstrator locomotives you need to restore to win the game"""
+    display_name="Number of restored demo locos required to win the game"
+    range_start = 1
+    range_end = 6
+    default = 6
+    
 class StartJobLicenses(Choice):
     """Choose your starting job license
      - One of the three: straightforward
@@ -175,6 +191,8 @@ class DVOptions(PerGameCommonOptions):
     # End Goal
     nb_jobs: NbJobs
     nb_stations: NbStations
+    nb_demo_locos: NbDemoLocos
+    victory_condition: VictoryCondition
     
     # Licenses
     dispatcher: Dispatcher
@@ -207,7 +225,9 @@ class DVOptions(PerGameCommonOptions):
 dv_option_groups = [
     OptionGroup("End goal", [
         NbJobs,
-        NbStations
+        NbStations,
+        NbDemoLocos,
+        VictoryCondition
     ]), 
     OptionGroup("Licenses", [
         Dispatcher,

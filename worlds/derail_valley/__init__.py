@@ -53,6 +53,7 @@ class DVWorld(World):
     location_name_to_id = {loc_type.name: loc_type.code for
                             loc_type in all_locations}
     starting_items: List[Item] = []
+    starting_station: str
 
     def create_item(self, name:str):
         id = self.item_name_to_id[name]
@@ -116,8 +117,10 @@ class DVWorld(World):
                 "ShuntThreshold":[self.options.nb_shunts.value for _ in range(20)],
                 "FreightThreshold": [self.options.nb_freights.value for _ in range(20)],
                 "LocoJobsThreshold": [self.options.nb_locos.value for _ in range(6)],
+                "VictoryCondition": self.options.victory_condition.value,
                 "Victory": self.options.nb_stations.value,
                 "VictoryThreshold": self.options.nb_jobs.value,
+                "VictoryDemoLoco": self.options.nb_demo_locos.value,
                 "HintsOnLocoLicense": self.options.hints_loco.value == 1,
                 "HintsOnStationLicense": self.options.hints_station.value == 1,
                 "DeathLink": self.options.death_link.value == 1,
