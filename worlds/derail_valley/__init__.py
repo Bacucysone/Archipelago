@@ -98,6 +98,8 @@ class DVWorld(World):
             excluded_items.append("Dispatcher license")
             dispatcher_license = self.create_item("Dispatcher license")
             self.multiworld.get_location("Dispatcher license", self.player).place_locked_item(dispatcher_license)
+        if not self.options.demo_loco_spawn:
+            excluded_items.extend(["Demo locomotive "+ loco for loco in self.all_locos])
         if len(possible_stations) == 0:
             possible_stations.append("SM") # This spawns you at SM if you don't have a license
         self.starting_station = self.random.choice(possible_stations)
@@ -128,6 +130,9 @@ class DVWorld(World):
                 "RandomiseLicensePrices": self.options.randomise_license_prices == 1,
                 "RandomiseLicensePricesMin": self.options.random_license_price_min.value,
                 "RandomiseLicensePricesMax": self.options.random_license_price_max.value,
+                "VanillaDemoLoco": self.options.demo_loco_spawn.value,
+                "RelicSpawnChecks": self.options.demo_checks,
+                "MuseumChecks": self.options.museum_checks
             },
             "StartStation": self.starting_station
         }

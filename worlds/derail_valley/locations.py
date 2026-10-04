@@ -1,7 +1,7 @@
-from typing import NamedTuple, Optional, List
+from typing import NamedTuple, List
 from BaseClasses import Location, ItemClassification, Region
 
-from .items import get_id, get_starting_items, DVItem
+from .items import DVItem
 
 class DVLocationData(NamedTuple):
     name: str
@@ -11,7 +11,6 @@ class DVLocationData(NamedTuple):
 class DVLocation(Location):
     game: str = "Derail Valley"
 
-all_stations = ["CME", "CMS", "CP", "CS", "CW", "FF", "FM", "FRC", "FRS", "GF", "HB", "IME", "IMW", "MB", "MF", "OR", "OWC", "OWN", "SM", "SW"]
 
 def get_locations(world: "DVWorld", region: Region) -> List[DVLocation]:
     locos = ["DE2", "DM3", "DH4", "DE6", "S060", "S282"]
@@ -34,16 +33,17 @@ def get_locations(world: "DVWorld", region: Region) -> List[DVLocation]:
     for i, loco in enumerate(locos):
         if world.options.nb_locos > 0:
             ret.append(DVLocation(world.player,loco+" orders completed", 0x600+i, region))
-        if world.options.museum_checks == True:
+        if world.options.museum_checks:
             ret.append(DVLocation(world.player,loco+" relic parts to museum", 0x620+i, region))
             ret.append(DVLocation(world.player,loco+" relic painted", 0x630+i, region))
         end_relic = DVLocation(world.player, f"Finish {loco} relic", None, region)
         end_relic.place_locked_item(DVItem(f"Finish {loco} relic", ItemClassification.progression, None, world.player))
         ret.append(end_relic)
+    if world.options.demo_checks:
+        ret.extend([DVLocation(world.player, loc.name, loc.code, region) for loc in all_locations_data if (0x400 <= loc.code and loc.code < 0x600)])
+    ret.extend([DVLocation(world.player, loc.name, loc.code, region) for loc in all_locations_data if (0x640 <= loc.code and loc.code < 0x700) ])
     
-    ret.extend([DVLocation(world.player, loc.name, loc.code, region) for loc in all_locations_data if (0x400 <= loc.code and loc.code < 0x600) or (0x640 <= loc.code and loc.code < 0x700) ])
-    
-    for station in all_stations:
+    for station in world.all_stations:
         end_station = DVLocation(world.player, "Finish "+station, None, region)
         end_station.place_locked_item(DVItem("Finish "+station, ItemClassification.progression, None, world.player))
         ret.append(end_station)
@@ -52,6 +52,9 @@ def get_locations(world: "DVWorld", region: Region) -> List[DVLocation]:
 
 def get_all_locations_data() -> List[DVLocationData]:
     location_table: List[DVLocationData] = []
+    all_stations = ["CME", "CMS", "CP", "CS", "CW", "FF", "FM", "FRC", "FRS", "GF", "HB", "IME", "IMW", "MB", "MF", "OR", "OWC", "OWN", "SM", "SW"]
+    all_locos = ["DE2", "DM3", "DH4", "DE6", "S060", "S282"]
+    
     for i in range(10):
         location_table.append(DVLocationData(f"Common shop item {i+1}", 0x50+i, "Shop"))
     #GF shop
@@ -135,20 +138,13 @@ def get_all_locations_data() -> List[DVLocationData]:
         location_table.extend([DVLocationData(f"{station} shunting order {k+1}", 0x2000+0x100*i+k, "Shunting jobs") for k in range(256)])
         location_table.extend([DVLocationData(f"{station} transport order {k+1}", 0x4000+i*0x100+k, "Transport jobs") for k in range(256)])
     
-    all_locos = ["DE2", "DM3", "DH4", "DE6", "S060", "S282"]
     for i, loco in enumerate(all_locos):
         location_table.append(DVLocationData(loco+" orders completed", 0x600+i, "Loco jobs"))
         location_table.append(DVLocationData(loco+" relic parts to museum", 0x620+i, "Museum"))
         location_table.append(DVLocationData(loco+" relic painted", 0x630+i, "Museum"))
+        location_table.append(DVLocationData(loco+" license", 0x660+i, "Loco license"))
 
-    location_table.extend([
-        DVLocationData("DE2 license", 0x660, "Start"),#G
-        DVLocationData("DM3 license", 0x661, "Start"),#G
-        DVLocationData("DH4 license", 0x662, "Intermediate license"),#G
-        DVLocationData("DE6 license", 0x663, "Advanced license"),#G
-        DVLocationData("S060 license", 0x664, "Start"),#G
-        DVLocationData("S282 license", 0x665, "Advanced license"),#G
-    ])#G
+
 
     #Licenses
     location_table.append(DVLocationData("Dispatcher license", 0x66B, "Menu"))#G

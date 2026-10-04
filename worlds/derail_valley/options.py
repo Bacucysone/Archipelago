@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from Options import Toggle, PerGameCommonOptions, OptionGroup, Choice, Range, DeathLink, OptionCounter
+from Options import Toggle, PerGameCommonOptions, OptionGroup, Choice, Range, DeathLink
 
 class VictoryCondition(Choice):
     """Choose your victory condition:
@@ -95,9 +95,23 @@ class NbFreights(Range):
 #     option_unique = 1
 #     option_full = 2
 
+class DemoLocoSpawnPointsChecks(Toggle):
+    """Adds checks at each possible demo loco spawn points in the game (57 checks).
+    If so, they need the museum license as well as the corresponding station license."""
+    display_name="Checks on demo loco spawn points"
+class DemoLocoBehaviour(Choice):
+    """Choose how demo locos are treated:
+     - Vanilla: No changes are made to demo locos, one of each loco will randomly spawn in the game
+     - AP gated: No loco will spawn, instead, 2 "Progressive demo loco" are added in the item pool for each locomotive.
+        The first level will directly spawn the corresponding loco on its track in the museum
+        The second level allows you to install the parts after having retrieved them from MF"""
+    display_name="Demo locos spawn"
+    option_vanilla = 0
+    option_ap_gated = 1
+    
 class MuseumChecks(Toggle):
     """Add checks for retrieving parts for the demonstrators at MF and
-    painting them using the paint sprayer."""
+    painting them using the paint sprayer (12 checks)"""
     display_name="Museum checks"
 
 class NbJobs(Range):
@@ -202,6 +216,7 @@ class DVOptions(PerGameCommonOptions):
     # Game preferences
     start_loco: StartLocoLicenses
     money: StartingMoney
+    demo_loco_spawn: DemoLocoBehaviour
 
     # Randomizer preferences
     nb_freights: NbFreights
@@ -210,6 +225,7 @@ class DVOptions(PerGameCommonOptions):
     museum_checks: MuseumChecks
     death_link: DeathLink
     double_tokens: PropDoubleJob
+    demo_checks: DemoLocoSpawnPointsChecks
     #shop: RandoShops
     randomise_license_prices: RandomiseLicensePrices
     random_license_price_min: RandomiseLicensePricesMin
@@ -236,7 +252,8 @@ dv_option_groups = [
     ]),
     OptionGroup("Game preferences", [
         StartLocoLicenses,
-        StartingMoney
+        StartingMoney,
+        DemoLocoBehaviour
     ]),
     OptionGroup("Randomizer preferences", [
         NbFreights,
@@ -249,6 +266,7 @@ dv_option_groups = [
         RandomiseLicensePrices,
         RandomiseLicensePricesMin,
         RandomiseLicensePricesMax,
+        DemoLocoSpawnPointsChecks
     ]),
     OptionGroup("Hint policy", [
         #ShopHint,
