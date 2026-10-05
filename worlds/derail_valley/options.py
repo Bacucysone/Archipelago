@@ -240,10 +240,10 @@ class DVOptions(PerGameCommonOptions):
 
 dv_option_groups = [
     OptionGroup("End goal", [
+        VictoryCondition,
         NbJobs,
         NbStations,
-        NbDemoLocos,
-        VictoryCondition
+        NbDemoLocos
     ]), 
     OptionGroup("Licenses", [
         Dispatcher,

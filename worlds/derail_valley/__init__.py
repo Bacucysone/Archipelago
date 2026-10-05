@@ -132,7 +132,8 @@ class DVWorld(World):
                 "RandomiseLicensePricesMax": self.options.random_license_price_max.value,
                 "VanillaDemoLoco": self.options.demo_loco_spawn.value,
                 "RelicSpawnChecks": self.options.demo_checks,
-                "MuseumChecks": self.options.museum_checks
+                "MuseumChecks": self.options.museum_checks,
+                "HintsLicenseManager": self.options.hints_license_manager
             },
             "StartStation": self.starting_station
         }
