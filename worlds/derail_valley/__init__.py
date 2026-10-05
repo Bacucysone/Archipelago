@@ -1,7 +1,6 @@
 from worlds.AutoWorld import WebWorld, World
 from typing import Set, List
-from BaseClasses import ItemClassification, Tutorial, Item, MultiWorld
-import settings, typing, os, threading
+from BaseClasses import Tutorial, Item
 
 from .items import DVItem, get_items, get_classification, get_starting_items, get_filler_items
 from .locations import get_locations, get_all_locations_data
@@ -113,7 +112,7 @@ class DVWorld(World):
         # Do some checks on the options data
         if self.options.random_license_price_max.value < self.options.random_license_price_min.value:
             self.options.random_license_price_max.value = self.options.random_license_price_min.value + 1000
-        return {
+        slotdata = {
             "Money": self.options.money.value,
             "Config": {
                 "ShuntThreshold":[self.options.nb_shunts.value for _ in range(20)],
@@ -131,12 +130,13 @@ class DVWorld(World):
                 "RandomiseLicensePricesMin": self.options.random_license_price_min.value,
                 "RandomiseLicensePricesMax": self.options.random_license_price_max.value,
                 "VanillaDemoLoco": self.options.demo_loco_spawn.value,
-                "RelicSpawnChecks": bool(self.options.demo_checks.value),
-                "MuseumChecks": bool(self.options.museum_checks.value),
-                "HintsLicenseManager": bool(self.options.hints_license_manager.value)
+                "RelicSpawnChecks": self.options.demo_checks.value == 1,
+                "MuseumChecks": self.options.museum_checks.value == 1,
+                "HintsLicenseManager": self.options.hints_license_manager.value == 1
             },
             "StartStation": self.starting_station
         }
+        return slotdata
     def get_job_hint(self):
         return None if self.options.hints_first == 1 and self.options.start_job.value == 4 else ""
     def get_loco_hint(self):
