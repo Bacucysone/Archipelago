@@ -6,7 +6,7 @@ import settings, typing, os, threading
 from .items import DVItem, get_items, get_classification, get_starting_items, get_filler_items
 from .locations import get_locations, get_all_locations_data
 from .rules import set_location_rules
-from .options import dv_option_groups, DVOptions
+from .options import dv_option_groups, DVOptions, DemoLocoBehaviour
 from .regions import init_areas
 
 class DVWeb(WebWorld):
@@ -98,7 +98,7 @@ class DVWorld(World):
             excluded_items.append("Dispatcher license")
             dispatcher_license = self.create_item("Dispatcher license")
             self.multiworld.get_location("Dispatcher license", self.player).place_locked_item(dispatcher_license)
-        if not self.options.demo_loco_spawn:
+        if self.options.demo_loco_spawn == DemoLocoBehaviour.option_ap_gated:
             excluded_items.extend(["Demo locomotive "+ loco for loco in self.all_locos])
         if len(possible_stations) == 0:
             possible_stations.append("SM") # This spawns you at SM if you don't have a license
@@ -131,9 +131,9 @@ class DVWorld(World):
                 "RandomiseLicensePricesMin": self.options.random_license_price_min.value,
                 "RandomiseLicensePricesMax": self.options.random_license_price_max.value,
                 "VanillaDemoLoco": self.options.demo_loco_spawn.value,
-                "RelicSpawnChecks": self.options.demo_checks,
-                "MuseumChecks": self.options.museum_checks,
-                "HintsLicenseManager": self.options.hints_license_manager
+                "RelicSpawnChecks": bool(self.options.demo_checks.value),
+                "MuseumChecks": bool(self.options.museum_checks.value),
+                "HintsLicenseManager": bool(self.options.hints_license_manager.value)
             },
             "StartStation": self.starting_station
         }
