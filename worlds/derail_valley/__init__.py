@@ -132,7 +132,6 @@ class DVWorld(World):
                 "VanillaDemoLoco": self.options.demo_loco_spawn.value,
                 "RelicSpawnChecks": self.options.demo_checks.value == 1,
                 "MuseumChecks": self.options.museum_checks.value == 1,
-                "HintsLicenseManager": self.options.hints_license_manager.value == 1
             },
             "StartStation": self.starting_station
         }
