@@ -97,7 +97,7 @@ class DVWorld(World):
             excluded_items.append("Dispatcher license")
             dispatcher_license = self.create_item("Dispatcher license")
             self.multiworld.get_location("Dispatcher license", self.player).place_locked_item(dispatcher_license)
-        if self.options.demo_loco_spawn == DemoLocoBehaviour.option_ap_gated:
+        if self.options.demo_loco_spawn == DemoLocoBehaviour.option_vanilla:
             excluded_items.extend(["Demo locomotive "+ loco for loco in self.all_locos])
         if len(possible_stations) == 0:
             possible_stations.append("SM") # This spawns you at SM if you don't have a license
