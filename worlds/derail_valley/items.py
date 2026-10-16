@@ -24,6 +24,7 @@ _item_table: List[ItemData] = [
     ItemData("50% off Wheels Damage", ItemClassification.useful, 0x16, 1),
     ItemData("50% off Mechanical Powertrain Damage", ItemClassification.useful, 0x17, 1),
     ItemData("50% off Electrical Powertrain Damage", ItemClassification.useful, 0x18, 1),
+    ItemData("50% off Body Damage", ItemClassification.useful, 0x19, 1),
 
     ItemData("Amp Limiter", ItemClassification.filler, 0x100, 0),
     ItemData("Anti-wheelslip Computer", ItemClassification.filler, 0x101, 0),

@@ -200,7 +200,7 @@ class HintsForLicenseManager(Toggle):
 #     default = 1
 
 class HalfPriceVouchers(Toggle):
-    """Add 9 items "50% off" in the item pool for the different resources of locomotives.
+    """Add 10 items "50% off" in the item pool for the different resources of locomotives.
     When you get one, the price when manual servicing locomotives is halved forever"""
     display_name="Half-price vouchers"
     
