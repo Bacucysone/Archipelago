@@ -14,6 +14,16 @@ _item_table: List[ItemData] = [
     ItemData("Nothing", ItemClassification.trap, 0x3, 0),
     ItemData("Money", ItemClassification.filler, 0x1, 0),
     ItemData("Double job token", ItemClassification.useful, 0x2, 0),
+    
+    ItemData("50% off Fuel", ItemClassification.useful, 0x10, 1),
+    ItemData("50% off Sand", ItemClassification.useful, 0x11, 1),
+    ItemData("50% off Oil", ItemClassification.useful, 0x12, 1),
+    ItemData("50% off Water", ItemClassification.useful, 0x13, 1),
+    ItemData("50% off Coal", ItemClassification.useful, 0x14, 1),
+    ItemData("50% off Electric Charge", ItemClassification.useful, 0x15, 1),
+    ItemData("50% off Wheels Damage", ItemClassification.useful, 0x16, 1),
+    ItemData("50% off Mechanical Powertrain Damage", ItemClassification.useful, 0x17, 1),
+    ItemData("50% off Electrical Powertrain Damage", ItemClassification.useful, 0x18, 1),
 
     ItemData("Amp Limiter", ItemClassification.filler, 0x100, 0),
     ItemData("Anti-wheelslip Computer", ItemClassification.filler, 0x101, 0),

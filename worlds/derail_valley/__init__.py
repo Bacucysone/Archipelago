@@ -70,6 +70,8 @@ class DVWorld(World):
     def get_common_items(self, excluded_items: List[Item]) -> List[Item]:
         pool : List[Item] = []
         for data in self.all_items:
+            if 0x10 <= data.code and data.code < 0x20 and not self.options.half_price_vouchers:
+                continue
             name = data.name
             if name not in excluded_items:
                 for _ in range(data.amount):

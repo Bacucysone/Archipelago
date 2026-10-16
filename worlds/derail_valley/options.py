@@ -174,7 +174,7 @@ class HintsForLocoLicenses(Toggle):
     display_name="Hints on loco licenses"
 
 class HintsForStationLicenses(Toggle):
-    """Add the items locked behing doing jobs in a given station on the corresponding license"""
+    """Add the items locked behind doing jobs in a given station on the corresponding license"""
     display_name="Hints on station licenses"
 
 class HintsForFirstLicenses(Toggle):
@@ -199,7 +199,11 @@ class HintsForLicenseManager(Toggle):
 #     option_never_hint = 2
 #     default = 1
 
-
+class HalfPriceVouchers(Toggle):
+    """Add 9 items "50% off" in the item pool for the different resources of locomotives.
+    When you get one, the price when manual servicing locomotives is halved forever"""
+    display_name="Half-price vouchers"
+    
 @dataclass
 class DVOptions(PerGameCommonOptions):
     # End Goal
@@ -217,6 +221,7 @@ class DVOptions(PerGameCommonOptions):
     start_loco: StartLocoLicenses
     money: StartingMoney
     demo_loco_spawn: DemoLocoBehaviour
+    half_price_vouchers: HalfPriceVouchers
 
     # Randomizer preferences
     nb_freights: NbFreights
@@ -226,6 +231,7 @@ class DVOptions(PerGameCommonOptions):
     death_link: DeathLink
     double_tokens: PropDoubleJob
     demo_checks: DemoLocoSpawnPointsChecks
+    
     #shop: RandoShops
     randomise_license_prices: RandomiseLicensePrices
     random_license_price_min: RandomiseLicensePricesMin
@@ -253,7 +259,8 @@ dv_option_groups = [
     OptionGroup("Game preferences", [
         StartLocoLicenses,
         StartingMoney,
-        DemoLocoBehaviour
+        DemoLocoBehaviour,
+        HalfPriceVouchers
     ]),
     OptionGroup("Randomizer preferences", [
         NbFreights,
