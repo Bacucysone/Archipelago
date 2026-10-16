@@ -28,7 +28,6 @@ class DVWeb(WebWorld):
 class DVWorld(World):
     """Drive a collection of locomotives to earn money, licenses, and find the relic demonstrator locomotives"""
     game = "Derail Valley"
-    # option_definitions = DVOptions
     data_version=1
     web = DVWeb()
 

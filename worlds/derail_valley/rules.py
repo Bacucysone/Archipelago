@@ -17,7 +17,7 @@ def set_location_rules(world: "DVWorld", location_table: List[DVLocation]) -> No
         if world.options.demo_loco_spawn.value == 0:
             return True_() # Always have access, somewhere
         else:
-            return Has(f"Demo locomotive {loco_name}",level)
+            return Has(f"Demo locomotive {loco_name}", level)
     def can_operate(loco) -> Rule:
         if loco in ["S060 locomotive license", "S282 locomotive license"]:
             return can_operate_steam & Has(loco)
@@ -44,8 +44,11 @@ def set_location_rules(world: "DVWorld", location_table: List[DVLocation]) -> No
         
     
     #Readability
-    set_rule = lambda loc, rule: world.set_rule(world.multiworld.get_location(loc, world.player), rule)
-
+    def set_rule(location: str, rule: Rule) -> None:
+        try:
+            world.set_rule(world.multiworld.get_location(location, world.player), rule)
+        except KeyError:
+            pass
     # if world.options.shop > 0:
     #     for i in range(19):
     #         set_rule(world.multiworld.get_location(f"GF shop unique item {i+1}", player), lambda state: can_make_money(state) and state.has("GF", player))
@@ -81,23 +84,19 @@ def set_location_rules(world: "DVWorld", location_table: List[DVLocation]) -> No
     # Orders belong to their stations
     for station in world.all_stations:
         shunting_rule, transport_rule = build_station_rules(station)
-        for k in range(nb_shunts):
-            if station != "MB":
-                set_rule(f"{station} shunting order {k+1}", shunting_rule)
-        for k in range(nb_freights):
+        for k in range(256):
+            set_rule(f"{station} shunting order {k+1}", shunting_rule)
             set_rule(f"{station} transport order {k+1}", transport_rule)
         
         set_rule("Finish "+station, (shunting_rule | transport_rule) if victory_condition == 0 else True_())
     
     for loco in world.all_locos:
-        if world.options.nb_locos.value > 0:
-            set_rule(loco+" orders completed", can_make_money & can_operate(f"{loco} locomotive license"))
-        if world.options.museum_checks:
-            set_rule(loco+" relic parts to museum", can_make_money & Has("Museum license") & relic_loco_rule(loco,1))
-            set_rule(loco+" relic painted", can_make_money & HasAllCounts({f"{loco} locomotive license":1, "Paint Sprayer":1, "Manual service license":1, "Museum license":1} | ({} if True else {"Sand can":2, "Demonstrator Paint Can":2})) & relic_loco_rule(loco,1))
+        set_rule(loco+" orders completed", can_make_money & can_operate(f"{loco} locomotive license"))
+        set_rule(loco+" relic parts to museum", can_make_money & Has("Museum license") & relic_loco_rule(loco,1))
         set_rule(f"Finish {loco} relic",
-                       (can_make_money & HasAllCounts({f"{loco} locomotive license":1, "Paint Sprayer":1, "Manual service license":1, "Museum license":1}) & relic_loco_rule(loco,2))
-                       if victory_condition == 1 else True_())
+               (can_make_money & 
+                HasAll(f"{loco} locomotive license", "Paint Sprayer", "Manual service license", "Museum license") & 
+                relic_loco_rule(loco,2)))
     
     set_rule("DE2 license", can_make_money)
     set_rule("DM3 license", can_make_money)

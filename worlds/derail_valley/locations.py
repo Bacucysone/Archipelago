@@ -34,14 +34,22 @@ def get_locations(world: "DVWorld", region: Region) -> List[DVLocation]:
     for i, loco in enumerate(locos):
         if world.options.nb_locos > 0:
             ret.append(DVLocation(world.player,loco+" orders completed", 0x600+i, region))
+            
+        end_relic = None
         if world.options.museum_checks:
             ret.append(DVLocation(world.player,loco+" relic parts to museum", 0x620+i, region))
-            ret.append(DVLocation(world.player,loco+" relic painted", 0x630+i, region))
-        end_relic = DVLocation(world.player, f"Finish {loco} relic", 0x1100+i, region)
-        end_relic.place_locked_item(DVItem(f"Finish {loco} relic", ItemClassification.progression, 0x1000+i, world.player))
-        ret.append(end_relic)
+            end_relic = DVLocation(world.player,f"Finish {loco} relic", 0x630+i, region)
+        if world.options.victory_condition.value == 1:
+            if end_relic is None:
+                end_relic = DVLocation(world.player,f"Finish {loco} relic", 0x630+i, region)
+            end_relic.place_locked_item(DVItem(f"Finish {loco} relic", ItemClassification.progression, 0x1100+i, world.player))
+        if end_relic is not None:
+            ret.append(end_relic)
+            
     if world.options.demo_checks:
+        # Demo loco spawn points
         ret.extend([DVLocation(world.player, loc.name, loc.code, region) for loc in all_locations_data if (0x400 <= loc.code and loc.code < 0x600)])
+    # Licenses
     ret.extend([DVLocation(world.player, loc.name, loc.code, region) for loc in all_locations_data if (0x640 <= loc.code and loc.code < 0x700) ])
     
     for i, station in enumerate(world.all_stations):
@@ -145,9 +153,8 @@ def get_all_locations_data() -> List[DVLocationData]:
     for i, loco in enumerate(all_locos):
         location_table.append(DVLocationData(loco+" orders completed", 0x600+i, "Loco jobs"))
         location_table.append(DVLocationData(loco+" relic parts to museum", 0x620+i, "Museum"))
-        location_table.append(DVLocationData(loco+" relic painted", 0x630+i, "Museum"))
+        location_table.append(DVLocationData(f"Finish {loco} relic", 0x630+i, "Museum"))
         location_table.append(DVLocationData(loco+" license", 0x660+i, "Loco license"))
-        location_table.append(DVLocationData(f"Finish {loco} relic", 0x1100+i, "Victory condition"))
 
 
 
